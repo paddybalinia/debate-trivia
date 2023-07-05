@@ -4,11 +4,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" />
+
     <title>Trivia Debate | Etapa 1</title>
 </head>
 
 <body>
+    <div class="container">
 
+        <header class="header">
+            <figure class="header__figure">
+                <img src="img/bg-elecciones.jpg" class="header__img" alt="logo" width="360" height="100">
+            </figure>
+            <h1 class="header__title">Quiz del día</h1>
+            <p class="header__desc">Te invitamos a jugar! Selecciona quien fue el autor de la siguiente frase.</p>
+        </header>
+
+        <ul class="trivia__ul">
+            <li class="trivia__li">
+
+                <div class="trivia__top">
+                    <p class="trivia__cintillo">Quien dijo: </p>
+                    <p class="trivia__pagination">Pregunta 1/5 </p>
+                </div>
+
+                <div class="question">
+                    <h2 class="question__title">Hay que quitar a todos los flojos del gobierno, incluidos estos tres
+                    </h2>
+                    <div class="question__img"></div>
+                </div>
+
+                <ul class="answer">
+                    <li class="answer__li" data-answer="true">
+                        <figure class="answer__figure">
+                            <img src="https://via.placeholder.com/80x80" class="answer__img" alt="answer" width="80"
+                                height="80">
+                        </figure>
+                        <p class="answer__title">Claudia Sheinbauma </p>
+                        <span class="answer__badge"></span>
+                    </li>
+
+                    <li class="answer__li " data-answer="false">
+                        <figure class="answer__figure">
+                            <img src="https://via.placeholder.com/80x80" class="answer__img" alt="answer" width="80"
+                                height="80">
+                        </figure>
+                        <p class="answer__title">Claudia Sheinbauma dos lineas</p>
+                        <span class="answer__badge"></span>
+                    </li>
+
+                    <li class="answer__li " data-answer="false">
+                        <figure class="answer__figure">
+                            <img src="https://via.placeholder.com/80x80" class="answer__img" alt="answer" width="80"
+                                height="80">
+                        </figure>
+                        <p class="answer__title">Claudia </p>
+                        <span class="answer__badge"></span>
+                    </li>
+
+                    <li class="answer__li " data-answer="false">
+                        <figure class="answer__figure">
+                            <img src="https://via.placeholder.com/80x80" class="answer__img" alt="answer" width="80"
+                                height="80">
+                        </figure>
+                        <p class="answer__title">Claudia Sheinbauma dos lineas mas largas</p>
+                        <span class="answer__badge"></span>
+                    </li>
+                </ul>
+
+                <div data-reveal class="hide container-reveal">
+                    <div class="reveal">
+                        <figure class="reveal__figure">
+                            <img src="https://via.placeholder.com/137x137" class="reveal__img" alt="avatar" width="137"
+                                height="137">
+                        </figure>
+                        <p class="reveal__title">Hay que quitar a todos los flojos del gobierno, incluidos estos tres
+                        </p>
+                    </div>
+
+                    <div class="alert alert--error">
+                        <div class="alert__badge"></div>
+                        <div class="alert__data">
+                            <h4 class="alert__title">¡Incorrecto!</h4>
+                            <p class="alert__text">La respuesta correcta es <strong>Claudia Sheinbauma</strong></p>
+                        </div>
+                    </div>
+
+                    <button class="button">
+                        <span class="button__text">Siguiente pregunta</span>
+                        <span class="button__icon arrow"></span>
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript" src="js/script.js"></script>
 </body>
 
 </html>
