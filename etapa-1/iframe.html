@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Prueba IFRAME</title>
+    <link rel="canonical" href="https://debate.cms-medios.com/.test/prueba_resize_iframe.html">
+    <link rel="amphtml" href="https://debate.cms-medios.com/.test/prueba_resize_iframe_AMP.html">
+    <meta name="viewport" content="width=device-width">
+    <style>
+        .iframe-container {
+            max-width: 400px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Elecciones 23-24: los candidatos</h1>
+    <p>Los mexicanos votaban el domingo para elegir al sucesor del presidente Enrique Peña Nieto en unos comicios a los
+        que el izquierdista Andrés Manuel López Obrador llega como amplio favorito para triunfar tras dos intentos
+        fallidos.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu mattis nulla. Mauris venenatis tempor magna,
+        semper fringilla tellus blandit ac.</p>
+
+    <p>Nulla congue neque ut enim placerat, vitae lobortis mi interdum. Donec eget sollicitudin dolor. Curabitur
+        facilisis risus a quam volutpat varius. Morbi facilisis laoreet malesuada.</p>
+
+    <div class="iframe-container">
+        <iframe frameborder="0" width="400" height="10" src="https://debate-trivia.vercel.app/etapa-1/index.html"
+            id="myiframe"></iframe>
+    </div>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu mattis nulla. Mauris venenatis tempor magna,
+        semper fringilla tellus blandit ac.</p>
+
+    <p>Nulla congue neque ut enim placerat, vitae lobortis mi interdum. Donec eget sollicitudin dolor. Curabitur
+        facilisis risus a quam volutpat varius. Morbi facilisis laoreet malesuada.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu mattis nulla. Mauris venenatis tempor magna,
+        semper fringilla tellus blandit ac.</p>
+
+    <p>Nulla congue neque ut enim placerat, vitae lobortis mi interdum. Donec eget sollicitudin dolor. Curabitur
+        facilisis risus a quam volutpat varius. Morbi facilisis laoreet malesuada.</p>
+
+    <script type="application/javascript">
+        var iframe = document.querySelector("#myiframe");
+
+        iframe.addEventListener('load', function () {
+            setInterval(function () {
+                iframe.style.height = iframe.contentDocument.body.scrollHeight + 'px';
+                //iframe.style.width = iframe.contentDocument.body.scrollWidth + 'px';
+            }, 500);
+        });	
+    </script>
+
+</body>
+
+</html>
