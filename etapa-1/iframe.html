@@ -27,7 +27,7 @@
         facilisis risus a quam volutpat varius. Morbi facilisis laoreet malesuada.</p>
 
     <div class="iframe-container">
-        <iframe frameborder="0" width="400" height="10" src="https://debate-trivia.vercel.app/etapa-1/index.html"
+        <iframe frameborder="0" width="400" height="923" src="https://debate-trivia.vercel.app/etapa-1/index.html"
             id="myiframe"></iframe>
     </div>
 
@@ -43,14 +43,16 @@
         facilisis risus a quam volutpat varius. Morbi facilisis laoreet malesuada.</p>
 
     <script type="application/javascript">
-        var iframe = document.querySelector("#myiframe");
 
-        iframe.addEventListener('load', function () {
-            setInterval(function () {
+        var iframe = document.querySelector("#myiframe");
+        window.addEventListener(
+            "message",
+            (event) => {
                 iframe.style.height = iframe.contentDocument.body.scrollHeight + 'px';
-                //iframe.style.width = iframe.contentDocument.body.scrollWidth + 'px';
-            }, 500);
-        });	
+            },
+            false
+        );
+
     </script>
 
 </body>

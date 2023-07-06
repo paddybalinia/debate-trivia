@@ -29,6 +29,7 @@
     setTimeout(() => {
       Reveal.classList.remove("hide");
       Reveal.scrollIntoView();
+      window.parent.postMessage(document.body.scrollHeight, window.location);
     }, "1000");
 
     if (this.dataset.answer == "true") {
