@@ -32,6 +32,15 @@
 
       setTimeout(() => {
         Reveal.scrollIntoView();
+
+        window.requestAnimationFrame(() => {
+          var message = {
+            sentinel: "amp",
+            type: "embed-size",
+            height: document.body.scrollHeight,
+          };
+          window.parent.postMessage(message, "*");
+        });
       }, "1000");
     }, "1000");
 
