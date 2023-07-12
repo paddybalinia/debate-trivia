@@ -16,7 +16,7 @@
     if (this.classList.contains("answer__li--disabled")) {
       return;
     }
-    var Answers = Parent.querySelectorAll(".answer__li"),
+    var Answers = Parent.querySelectorAll("li[data-points]"),
       Reveal = Parent.parentNode.querySelector("[data-reveal]"),
       Alert = Parent.parentNode.querySelector(".alert"),
       Alert = Parent.parentNode.querySelector(".alert"),
@@ -44,7 +44,9 @@
       }, "1000");
     }, "1000");
 
-    if (this.dataset.answer == "true") {
+    var NumBig = getNumberBig(Answers);
+
+    if (this.dataset.points == NumBig) {
       this.classList.add("succes");
       Alert.classList.add("alert--succes");
       AlertTitle.innerHTML = "¡Correcto!";
@@ -52,7 +54,7 @@
     }
 
     for (let i = 0; i < Answers.length; i++) {
-      if (Answers[i].dataset.answer == "true") {
+      if (Answers[i].dataset.points == NumBig) {
         Answers[i].classList.add("succes");
       }
     }
@@ -60,43 +62,16 @@
     this.classList.add("error");
   }
 
-  /////////
-  ///https://chat.openai.com/share/318074e4-ef70-4b4c-a1d1-7157e769b603
-  ///
-  function encontrarNumeroMayor(array) {
-    if (array.length !== 4) {
-      return "El array debe contener exactamente 4 números.";
-    }
-
-    let mayor = array[0]; // Asignamos el primer número del array como el mayor
-
-    for (let i = 1; i < array.length; i++) {
-      if (array[i] > mayor) {
-        mayor = array[i];
+  function getNumberBig(arrayNumbers) {
+    let mayor = null;
+    arrayNumbers.forEach((elemento) => {
+      const number = parseInt(elemento.getAttribute("data-points"));
+      if (mayor === null || number > mayor) {
+        mayor = number;
       }
-    }
-
+    });
     return mayor;
   }
-
-  const numeros = [10, 5, 8, 12];
-  const numeroMayor = encontrarNumeroMayor(numeros);
-  console.log(numeroMayor);
-
-  const elementos = document.querySelectorAll("li[data-point]");
-
-  let mayor = null;
-
-  elementos.forEach((elemento) => {
-    const numero = parseInt(elemento.getAttribute("data-point"));
-    if (mayor === null || numero > mayor) {
-      mayor = numero;
-    }
-  });
-
-  console.log(mayor); // Imprime el número mayor encontrado
-
-  /////////
 
   //AnimConfetti();
 
