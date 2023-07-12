@@ -60,6 +60,44 @@
     this.classList.add("error");
   }
 
+  /////////
+  ///https://chat.openai.com/share/318074e4-ef70-4b4c-a1d1-7157e769b603
+  ///
+  function encontrarNumeroMayor(array) {
+    if (array.length !== 4) {
+      return "El array debe contener exactamente 4 números.";
+    }
+
+    let mayor = array[0]; // Asignamos el primer número del array como el mayor
+
+    for (let i = 1; i < array.length; i++) {
+      if (array[i] > mayor) {
+        mayor = array[i];
+      }
+    }
+
+    return mayor;
+  }
+
+  const numeros = [10, 5, 8, 12];
+  const numeroMayor = encontrarNumeroMayor(numeros);
+  console.log(numeroMayor);
+
+  const elementos = document.querySelectorAll("li[data-point]");
+
+  let mayor = null;
+
+  elementos.forEach((elemento) => {
+    const numero = parseInt(elemento.getAttribute("data-point"));
+    if (mayor === null || numero > mayor) {
+      mayor = numero;
+    }
+  });
+
+  console.log(mayor); // Imprime el número mayor encontrado
+
+  /////////
+
   //AnimConfetti();
 
   function AnimConfetti() {
