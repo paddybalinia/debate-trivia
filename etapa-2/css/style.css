@@ -417,7 +417,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: 21px;
-    margin: 16px 0 0;
+    margin: 16px 20px 0;
 }
 
 .points__ul {
@@ -480,12 +480,18 @@ button {
     width: 28px;
 }
 
+.badge--small {
+    height: 22px;
+    flex: 0 0 22px;
+    width: 22px;
+}
+
 .error {
     background: #FCE1E1;
 }
 
 .error .badge {
-    background: url(../img/icon-error.svg) no-repeat center;
+    background: center / contain no-repeat url(../img/icon-error.svg);
 }
 
 .succes {
@@ -493,7 +499,7 @@ button {
 }
 
 .succes .badge {
-    background: url(../img/icon-success.svg) no-repeat center;
+    background: center / contain no-repeat url(../img/icon-success.svg);
 }
 
 /******
@@ -646,5 +652,9 @@ button {
     .alert__text {
         font-size: 15px;
         line-height: 21px;
+    }
+
+    .points {
+        margin: 35px 0 0;
     }
 }
