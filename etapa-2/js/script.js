@@ -1,6 +1,9 @@
 (function () {
   "use strict";
 
+  var respuestas = [],
+    cantPoints = 0;
+
   //Constructor
   function Constructor() {
     var ButtonAnswer = document.querySelectorAll(".answer__li");
@@ -17,10 +20,15 @@
       return;
     }
     var Answers = Parent.querySelectorAll("li[data-points]"),
+      ButtonNext = document.querySelectorAll("button[data-next]"),
       Reveal = Parent.parentNode.querySelector("[data-reveal]"),
       Alert = Parent.parentNode.querySelector(".alert"),
       Alert = Parent.parentNode.querySelector(".alert"),
       AlertTitle = Alert.querySelector(".alert__title");
+
+    for (let i = 0; i < ButtonNext.length; i++) {
+      ButtonNext[i].addEventListener("click", showNextItem, false);
+    }
 
     for (let i = 0; i < Answers.length; i++) {
       Answers[i].classList.add("answer__li--disabled");
@@ -45,6 +53,12 @@
     }, "1000");
 
     var NumBig = getNumberBig(Answers);
+
+    cantPoints = cantPoints + Number(this.dataset.points);
+    var isTrue = this.dataset.points == NumBig ? true : false;
+    agregarRespuesta(isTrue);
+
+    //console.log(respuestas);
 
     if (this.dataset.points == NumBig) {
       this.classList.add("succes");
@@ -71,6 +85,59 @@
       }
     });
     return mayor;
+  }
+
+  function showNextItem() {
+    const parent = this.parentElement.parentElement;
+    const nextLi = parent.nextElementSibling;
+
+    if (nextLi) {
+      nextLi.classList.remove("hide");
+      setTimeout(() => {
+        nextLi.scrollIntoView();
+      }, "1000");
+    } else {
+      var Results = document.querySelector(".results");
+      Results.classList.remove("hide");
+      setTimeout(() => {
+        Results.scrollIntoView();
+      }, "1000");
+
+      // const divRespuestas = document.createElement("div");
+      // divRespuestas.className = "respuestas";
+
+      const ulRespuestas = document.querySelector(".points__ul");
+
+      var indice = 0;
+      for (const respuesta of respuestas) {
+        const liRespuesta = document.createElement("li");
+        liRespuesta.className = "points__li";
+
+        if (respuesta) {
+          liRespuesta.classList.add("succes");
+        } else {
+          liRespuesta.classList.add("error");
+        }
+
+        const divText = document.createElement("div");
+        divText.className = "points__text";
+        divText.textContent = `Pregunta ${indice + 1}`;
+
+        const divBadge = document.createElement("div");
+        divBadge.className = "badge badge--small";
+
+        liRespuesta.appendChild(divText);
+        liRespuesta.appendChild(divBadge);
+        ulRespuestas.appendChild(liRespuesta);
+        indice++;
+      }
+
+      //document.body.appendChild(ulRespuestas);
+    }
+  }
+
+  function agregarRespuesta(respuesta) {
+    respuestas.push(respuesta);
   }
 
   //AnimConfetti();
