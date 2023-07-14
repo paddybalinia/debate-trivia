@@ -124,12 +124,13 @@ button {
 .header__desc {
     color: #211915;
     font: 400 17px/1.3 var(--font-2);
-    margin: 15px 20px 28px;
+    margin: 15px 20px 13px;
 }
 
 .trivia__top {
     display: flex;
     justify-content: space-between;
+    margin: 15px 0 0;
 }
 
 .trivia__cintillo {
@@ -425,7 +426,8 @@ button {
     display: flex;
     flex-direction: column;
     gap: 21px;
-    margin: 16px 20px 0;
+    margin: 0 20px 0;
+    padding-top: 16px;
 }
 
 .points__ul {

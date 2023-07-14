@@ -142,22 +142,22 @@
         nextLi.scrollIntoView();
       }, "1000");
     } else {
-      AnimConfetti();
-
-      setTimeout(() => {
-        const Confetti = document.querySelector("body > div:last-child");
-
-        Confetti.style.opacity = 0;
-        Confetti.style.transition = "opacity .6s linear";
-        setTimeout(() => {
-          Confetti.remove();
-        }, "1000");
-      }, "5000");
-
       var Results = document.querySelector(".results");
       Results.classList.remove("hide");
       setTimeout(() => {
         Results.scrollIntoView();
+
+        AnimConfetti();
+
+        setTimeout(() => {
+          const Confetti = document.querySelector("body > div:last-child");
+
+          Confetti.style.opacity = 0;
+          Confetti.style.transition = "opacity .6s linear";
+          setTimeout(() => {
+            Confetti.remove();
+          }, "1000");
+        }, "5000");
       }, "1000");
 
       const ulRespuestas = document.querySelector(".points__ul");
