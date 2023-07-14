@@ -10,6 +10,11 @@
     for (let i = 0; i < ButtonAnswer.length; i++) {
       ButtonAnswer[i].addEventListener("click", onButtonAnswer, false);
     }
+
+    var ButtonShare = document.querySelectorAll(".share__a");
+    for (let i = 0; i < ButtonShare.length; i++) {
+      ButtonShare[i].addEventListener("click", onButtonShare, false);
+    }
   }
 
   // Events
@@ -87,6 +92,46 @@
     return mayor;
   }
 
+  function onButtonShare(e) {
+    e.preventDefault();
+
+    var ShareUrl =
+        window.location != window.parent.location
+          ? document.referrer
+          : document.location.href,
+      ShareText = "¿Te atreves a jugar a esta trivia?",
+      ShareSocial = this.dataset.share;
+
+    if (ShareSocial == "whatsapp") {
+      window.open("whatsapp://send?text=%20" + ShareText + "%20" + ShareUrl);
+    }
+    if (ShareSocial == "facebook") {
+      window.open(
+        "https://www.facebook.com/sharer/sharer.php?u=" + ShareUrl,
+        "_blank",
+        "height=368,width=600,left=100,top=100,menubar=0"
+      );
+    }
+    if (ShareSocial == "twitter") {
+      window.open(
+        "https://twitter.com/intent/tweet?text= " +
+          ShareText +
+          "&url=" +
+          ShareUrl +
+          "_blank",
+        "height=260,width=500,left=100,top=100,menubar=0"
+      );
+    }
+    if (ShareSocial == "mail") {
+      window.open(
+        "mailto:?subject=¡Participa en la trivia!&body=" +
+          ShareText +
+          " %20 " +
+          ShareUrl
+      );
+    }
+  }
+
   function showNextItem() {
     const parent = this.parentElement.parentElement;
     const nextLi = parent.nextElementSibling;
@@ -97,14 +142,23 @@
         nextLi.scrollIntoView();
       }, "1000");
     } else {
+      AnimConfetti();
+
+      setTimeout(() => {
+        const Confetti = document.querySelector("body > div:last-child");
+
+        Confetti.style.opacity = 0;
+        Confetti.style.transition = "opacity .6s linear";
+        setTimeout(() => {
+          Confetti.remove();
+        }, "1000");
+      }, "5000");
+
       var Results = document.querySelector(".results");
       Results.classList.remove("hide");
       setTimeout(() => {
         Results.scrollIntoView();
       }, "1000");
-
-      // const divRespuestas = document.createElement("div");
-      // divRespuestas.className = "respuestas";
 
       const ulRespuestas = document.querySelector(".points__ul");
 
@@ -131,16 +185,12 @@
         ulRespuestas.appendChild(liRespuesta);
         indice++;
       }
-
-      //document.body.appendChild(ulRespuestas);
     }
   }
 
   function agregarRespuesta(respuesta) {
     respuestas.push(respuesta);
   }
-
-  //AnimConfetti();
 
   function AnimConfetti() {
     // https://codepen.io/bananascript/pen/EyZeWm

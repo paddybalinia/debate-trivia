@@ -236,11 +236,6 @@ button {
     display: none;
 }
 
-.answer__li.success {
-    background: var(--bg-light-succes);
-    cursor: auto;
-    transition: all .2s;
-}
 
 .answer__li.error {
     background: var(--bg-error);
@@ -387,7 +382,7 @@ button {
 }
 
 .button:hover .arrow {
-    left: 3px;
+    top: 5px;
 }
 
 .arrow {
@@ -397,6 +392,8 @@ button {
     left: 0;
     width: 11px;
     transition: all .2s;
+    transform: rotate(90deg);
+    top: 3px;
 }
 
 .arrow:before,
