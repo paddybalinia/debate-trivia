@@ -142,54 +142,79 @@
         nextLi.scrollIntoView();
       }, "1000");
     } else {
-      var Results = document.querySelector(".results");
-      Results.classList.remove("hide");
-      setTimeout(() => {
-        Results.scrollIntoView();
-
-        AnimConfetti();
-
-        setTimeout(() => {
-          const Confetti = document.querySelector("body > div:last-child");
-
-          Confetti.style.opacity = 0;
-          Confetti.style.transition = "opacity .6s linear";
-          setTimeout(() => {
-            Confetti.remove();
-          }, "1000");
-        }, "5000");
-      }, "1000");
-
-      const ulRespuestas = document.querySelector(".points__ul");
-
-      var indice = 0;
-      for (const respuesta of respuestas) {
-        const liRespuesta = document.createElement("li");
-        liRespuesta.className = "points__li";
-
-        if (respuesta) {
-          liRespuesta.classList.add("succes");
-        } else {
-          liRespuesta.classList.add("error");
-        }
-
-        const divText = document.createElement("div");
-        divText.className = "points__text";
-        divText.textContent = `Pregunta ${indice + 1}`;
-
-        const divBadge = document.createElement("div");
-        divBadge.className = "badge badge--small";
-
-        liRespuesta.appendChild(divText);
-        liRespuesta.appendChild(divBadge);
-        ulRespuestas.appendChild(liRespuesta);
-        indice++;
-      }
+      showResult();
     }
   }
 
   function agregarRespuesta(respuesta) {
     respuestas.push(respuesta);
+  }
+
+  function showResult() {
+    var Results = document.querySelector(".results");
+    Results.classList.remove("hide");
+    setTimeout(() => {
+      Results.scrollIntoView();
+
+      AnimConfetti();
+
+      setTimeout(() => {
+        const Confetti = document.querySelector("body > div:last-child");
+
+        Confetti.style.opacity = 0;
+        Confetti.style.transition = "opacity .6s linear";
+        setTimeout(() => {
+          Confetti.remove();
+        }, "1000");
+      }, "4000");
+    }, "1000");
+
+    const ulRespuestas = document.querySelector(".points__ul");
+
+    var indice = 0;
+    for (const respuesta of respuestas) {
+      const liRespuesta = document.createElement("li");
+      liRespuesta.className = "points__li";
+
+      if (respuesta) {
+        liRespuesta.classList.add("succes");
+      } else {
+        liRespuesta.classList.add("error");
+      }
+
+      const divText = document.createElement("div");
+      divText.className = "points__text";
+      divText.textContent = `Pregunta ${indice + 1}`;
+
+      const divBadge = document.createElement("div");
+      divBadge.className = "badge badge--small";
+
+      liRespuesta.appendChild(divText);
+      liRespuesta.appendChild(divBadge);
+      ulRespuestas.appendChild(liRespuesta);
+      indice++;
+    }
+
+    countSuccess();
+  }
+
+  function countSuccess() {
+    var textResult = document.querySelector(".points__texto");
+    var liElements = document.querySelectorAll(".points__li");
+    var succesCount = 0;
+
+    for (var liElement of liElements) {
+      if (liElement.classList.contains("succes")) {
+        succesCount++;
+      }
+    }
+
+    if (succesCount > 0) {
+      textResult.textContent =
+        "Respondiste correctamente " + succesCount + " preguntas";
+    } else {
+      textResult.textContent = "No respondiste correctamente ninguna pregunta";
+    }
   }
 
   function AnimConfetti() {
