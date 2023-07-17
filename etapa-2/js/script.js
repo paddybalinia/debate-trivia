@@ -18,23 +18,6 @@
     }
 
     ButtonReset.addEventListener("click", onButtonReset, false);
-
-    var triviaHeight = document.querySelector(".container").offsetHeight;
-
-    setTimeout(() => {
-      window.parent.postMessage(triviaHeight, window.location);
-
-      setTimeout(() => {
-        window.requestAnimationFrame(() => {
-          var message = {
-            sentinel: "amp",
-            type: "embed-size",
-            height: triviaHeight,
-          };
-          window.parent.postMessage(message, "*");
-        });
-      }, "200");
-    }, "200");
   }
 
   // Events
@@ -329,8 +312,8 @@
           };
           window.parent.postMessage(message, "*");
         });
-      }, "200");
-    }, "200");
+      }, "400");
+    }, "400");
   };
 
   function AnimConfetti() {
