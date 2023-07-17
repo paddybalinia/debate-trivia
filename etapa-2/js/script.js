@@ -314,6 +314,25 @@
     }, "800");
   }
 
+  window.onload = function () {
+    var triviaHeight = document.querySelector(".container").offsetHeight;
+
+    setTimeout(() => {
+      window.parent.postMessage(triviaHeight, window.location);
+
+      setTimeout(() => {
+        window.requestAnimationFrame(() => {
+          var message = {
+            sentinel: "amp",
+            type: "embed-size",
+            height: triviaHeight,
+          };
+          window.parent.postMessage(message, "*");
+        });
+      }, "200");
+    }, "200");
+  };
+
   function AnimConfetti() {
     // https://codepen.io/bananascript/pen/EyZeWm
 
