@@ -143,8 +143,18 @@
 
     if (nextLi) {
       nextLi.classList.remove("hide");
+      window.parent.postMessage(document.body.scrollHeight, window.location);
       setTimeout(() => {
         nextLi.scrollIntoView();
+
+        window.requestAnimationFrame(() => {
+          var message = {
+            sentinel: "amp",
+            type: "embed-size",
+            height: document.body.scrollHeight,
+          };
+          window.parent.postMessage(message, "*");
+        });
       }, "500");
     } else {
       showResult();
@@ -158,12 +168,6 @@
   function showResult() {
     var Results = document.querySelector(".results");
     Results.classList.remove("hide");
-
-    setTimeout(() => {
-      Results.scrollIntoView();
-
-      AnimConfetti();
-    }, "800");
 
     const ulRespuestas = document.querySelector(".points__ul");
 
@@ -190,6 +194,23 @@
       ulRespuestas.appendChild(liRespuesta);
       indice++;
     }
+
+    window.parent.postMessage(document.body.scrollHeight, window.location);
+
+    setTimeout(() => {
+      Results.scrollIntoView();
+
+      window.requestAnimationFrame(() => {
+        var message = {
+          sentinel: "amp",
+          type: "embed-size",
+          height: document.body.scrollHeight,
+        };
+        window.parent.postMessage(message, "*");
+      });
+
+      AnimConfetti();
+    }, "800");
 
     countSuccess();
   }
@@ -258,6 +279,22 @@
     }, "800");
 
     respuestas = [];
+
+    setTimeout(() => {
+      var containerHeight = document.querySelector(".container").offsetHeight;
+      window.parent.postMessage(containerHeight, window.location);
+
+      setTimeout(() => {
+        window.requestAnimationFrame(() => {
+          var message = {
+            sentinel: "amp",
+            type: "embed-size",
+            height: containerHeight,
+          };
+          window.parent.postMessage(message, "*");
+        });
+      }, "400");
+    }, "800");
   }
 
   function AnimConfetti() {
