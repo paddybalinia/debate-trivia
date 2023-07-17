@@ -57,8 +57,8 @@
           };
           window.parent.postMessage(message, "*");
         });
-      }, "1000");
-    }, "1000");
+      }, "400");
+    }, "400");
 
     var NumBig = getNumberBig(Answers);
 
@@ -145,7 +145,7 @@
       nextLi.classList.remove("hide");
       setTimeout(() => {
         nextLi.scrollIntoView();
-      }, "1000");
+      }, "500");
     } else {
       showResult();
     }
@@ -163,17 +163,7 @@
       Results.scrollIntoView();
 
       AnimConfetti();
-
-      setTimeout(() => {
-        const Confetti = document.querySelector("body > div:last-child");
-
-        Confetti.style.opacity = 0;
-        Confetti.style.transition = "opacity .3s linear";
-        setTimeout(() => {
-          Confetti.remove();
-        }, "1000");
-      }, "4000");
-    }, "1000");
+    }, "800");
 
     const ulRespuestas = document.querySelector(".points__ul");
 
@@ -233,6 +223,11 @@
       triviaLiFirst = triviaLi[0];
 
     Header.scrollIntoView();
+    const Confetti = document.querySelector("body > div:last-child");
+
+    Confetti.style.opacity = 0;
+    Confetti.style.transition = "opacity .3s linear";
+    Confetti.remove();
 
     for (let e = 0; e < answerElement.length; e++) {
       answerElement[e].classList.remove("succes");
@@ -260,7 +255,7 @@
 
       Results.classList.add("hide");
       triviaLiFirst.classList.remove("hide");
-    }, "1000");
+    }, "800");
 
     respuestas = [];
   }
