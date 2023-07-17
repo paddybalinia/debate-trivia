@@ -7,6 +7,7 @@
   //Constructor
   function Constructor() {
     var ButtonAnswer = document.querySelectorAll(".answer__li");
+    var ButtonReset = document.querySelector(".button__reset");
     for (let i = 0; i < ButtonAnswer.length; i++) {
       ButtonAnswer[i].addEventListener("click", onButtonAnswer, false);
     }
@@ -15,6 +16,8 @@
     for (let i = 0; i < ButtonShare.length; i++) {
       ButtonShare[i].addEventListener("click", onButtonShare, false);
     }
+
+    ButtonReset.addEventListener("click", onButtonReset, false);
   }
 
   // Events
@@ -79,6 +82,8 @@
     }
 
     this.classList.add("error");
+    Alert.classList.add("alert--error");
+    AlertTitle.innerHTML = "¡Incorrecto!";
   }
 
   function getNumberBig(arrayNumbers) {
@@ -153,6 +158,7 @@
   function showResult() {
     var Results = document.querySelector(".results");
     Results.classList.remove("hide");
+
     setTimeout(() => {
       Results.scrollIntoView();
 
@@ -162,7 +168,7 @@
         const Confetti = document.querySelector("body > div:last-child");
 
         Confetti.style.opacity = 0;
-        Confetti.style.transition = "opacity .6s linear";
+        Confetti.style.transition = "opacity .3s linear";
         setTimeout(() => {
           Confetti.remove();
         }, "1000");
@@ -199,9 +205,9 @@
   }
 
   function countSuccess() {
-    var textResult = document.querySelector(".points__texto");
-    var liElements = document.querySelectorAll(".points__li");
-    var succesCount = 0;
+    var textResult = document.querySelector(".points__texto"),
+      liElements = document.querySelectorAll(".points__li"),
+      succesCount = 0;
 
     for (var liElement of liElements) {
       if (liElement.classList.contains("succes")) {
@@ -215,6 +221,48 @@
     } else {
       textResult.textContent = "No respondiste correctamente ninguna pregunta";
     }
+  }
+
+  function onButtonReset() {
+    var Header = document.querySelector(".header"),
+      Results = document.querySelector(".results"),
+      answerElement = document.querySelectorAll(".answer__li"),
+      revealElement = document.querySelectorAll(".container-reveal"),
+      alertElement = document.querySelectorAll(".alert"),
+      triviaLi = document.querySelectorAll(".trivia__li"),
+      triviaLiFirst = triviaLi[0];
+
+    Header.scrollIntoView();
+
+    for (let e = 0; e < answerElement.length; e++) {
+      answerElement[e].classList.remove("succes");
+      answerElement[e].classList.remove("error");
+      answerElement[e].classList.remove("answer__li--disabled");
+    }
+    setTimeout(() => {
+      const pointsUlElements = document.querySelectorAll(".points__ul > li");
+
+      for (const pointsUlElement of pointsUlElements) {
+        pointsUlElement.remove();
+      }
+
+      for (let i = 0; i < triviaLi.length; i++) {
+        triviaLi[i].classList.add("hide");
+      }
+
+      for (let i = 0; i < revealElement.length; i++) {
+        revealElement[i].classList.add("hide");
+      }
+      for (let i = 0; i < alertElement.length; i++) {
+        alertElement[i].classList.remove("alert--error");
+        alertElement[i].classList.remove("alert--succes");
+      }
+
+      Results.classList.add("hide");
+      triviaLiFirst.classList.remove("hide");
+    }, "1000");
+
+    respuestas = [];
   }
 
   function AnimConfetti() {
