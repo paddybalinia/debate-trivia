@@ -382,9 +382,6 @@ button {
     background: #1a66f7;
 }
 
-.button:hover .arrow {
-    top: 5px;
-}
 
 .arrow {
     position: relative;
@@ -623,6 +620,11 @@ button {
     .answer__li {
         flex-basis: 47.7%;
     }
+
+    .button:hover .arrow {
+        top: 5px;
+    }
+
 
     .reveal {
         gap: 30px;
