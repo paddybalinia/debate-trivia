@@ -66,8 +66,6 @@
     var isTrue = this.dataset.points == NumBig ? true : false;
     agregarRespuesta(isTrue);
 
-    //console.log(respuestas);
-
     if (this.dataset.points == NumBig) {
       this.classList.add("succes");
       Alert.classList.add("alert--succes");
@@ -193,6 +191,17 @@
       liRespuesta.appendChild(divBadge);
       ulRespuestas.appendChild(liRespuesta);
       indice++;
+
+      var boxResult = document.querySelectorAll(".points__result");
+
+      boxResult.forEach((div) => {
+        var min = parseInt(div.getAttribute("data-min"));
+        var max = parseInt(div.getAttribute("data-max"));
+
+        if (cantPoints >= min && cantPoints <= max) {
+          div.classList.remove("hide");
+        }
+      });
     }
 
     window.parent.postMessage(document.body.scrollHeight, window.location);
@@ -215,6 +224,7 @@
     countSuccess();
   }
 
+  // En esta funcion solo cambiamos el texto de cuantas asertar
   function countSuccess() {
     var textResult = document.querySelector(".points__texto"),
       liElements = document.querySelectorAll(".points__li"),
@@ -246,40 +256,59 @@
     Header.scrollIntoView();
     const Confetti = document.querySelector("body > div:last-child");
 
+    // Reset de Confetti en Fade
     Confetti.style.opacity = 0;
     Confetti.style.transition = "opacity .3s linear";
     Confetti.remove();
 
+    // Reset de todas las respuestas
     for (let e = 0; e < answerElement.length; e++) {
       answerElement[e].classList.remove("succes");
       answerElement[e].classList.remove("error");
       answerElement[e].classList.remove("answer__li--disabled");
     }
     setTimeout(() => {
+      // Reset de tabla de resultados
       const pointsUlElements = document.querySelectorAll(".points__ul > li");
 
       for (const pointsUlElement of pointsUlElements) {
         pointsUlElement.remove();
       }
 
+      // Ocultamos tods las preguntas
       for (let i = 0; i < triviaLi.length; i++) {
         triviaLi[i].classList.add("hide");
       }
 
+      // Ocultamos tods las respuestas
       for (let i = 0; i < revealElement.length; i++) {
         revealElement[i].classList.add("hide");
       }
+
+      // Reseteamos las alertas
       for (let i = 0; i < alertElement.length; i++) {
         alertElement[i].classList.remove("alert--error");
         alertElement[i].classList.remove("alert--succes");
       }
 
+      // Ocultamos la tabla resultados
       Results.classList.add("hide");
+
+      // Mostramos la primera pregunta
       triviaLiFirst.classList.remove("hide");
     }, "800");
 
     respuestas = [];
 
+    cantPoints = 0;
+
+    // Reset de el texto segun puntos
+    var pointsResult = document.querySelectorAll(".points__result");
+    pointsResult.forEach((div) => {
+      div.classList.add("hide");
+    });
+
+    // Resize de iframe
     setTimeout(() => {
       var containerHeight = document.querySelector(".trivia").offsetHeight;
       window.parent.postMessage(containerHeight, window.location);
