@@ -18,6 +18,12 @@
     }
 
     ButtonReset.addEventListener("click", onButtonReset, false);
+
+    var iframeTriva = window.parent.document.querySelector("div");
+    iframeTriva.style.border = "1px solid #e0e0e0";
+    iframeTriva.style.borderRadius = "10px";
+    iframeTriva.style.overflow = "hidden";
+    iframeTriva.style.position = "relative";
   }
 
   // Events
