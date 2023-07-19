@@ -645,7 +645,7 @@ button {
     }
 
     .answer__li {
-        flex-basis: 47.5%;
+        flex-basis: 47.45%;
     }
 
     .button:hover .arrow {
