@@ -20,6 +20,7 @@
             <p class="header__desc">¡Te invitamos a jugar! Selecciona quién fue el autor de la siguiente frase.</p>
         </header>
 
+
         <ul class="trivia__ul">
 
             <li class="trivia__li ">
@@ -39,7 +40,7 @@
                 </div>
 
                 <ul class="answer">
-                    <li class="answer__li" data-points="15">
+                    <li class="answer__li" data-points="30">
                         <figure class="answer__figure">
                             <img src="https://via.placeholder.com/57x57" class="answer__img" alt="answer" width="57"
                                 height="57">
@@ -127,7 +128,7 @@
                         <span class="answer__badge badge"></span>
                     </li>
 
-                    <li class="answer__li" data-points="20">
+                    <li class="answer__li" data-points="30">
                         <figure class="answer__figure">
                             <img src="https://via.placeholder.com/57x57" class="answer__img" alt="answer" width="57"
                                 height="57">
@@ -216,7 +217,7 @@
                         <span class="answer__badge badge"></span>
                     </li>
 
-                    <li class="answer__li" data-points="12">
+                    <li class="answer__li" data-points="30">
                         <figure class="answer__figure">
                             <img src="https://via.placeholder.com/57x57" class="answer__img" alt="answer" width="57"
                                 height="57">
@@ -307,7 +308,7 @@
                         <span class="answer__badge badge"></span>
                     </li>
 
-                    <li class="answer__li" data-points="13">
+                    <li class="answer__li" data-points="30">
                         <figure class="answer__figure">
                             <img src="https://via.placeholder.com/57x57" class="answer__img" alt="answer" width="57"
                                 height="57">
@@ -386,7 +387,7 @@
                         <span class="answer__badge badge"></span>
                     </li>
 
-                    <li class="answer__li" data-points="13">
+                    <li class="answer__li" data-points="30">
                         <figure class="answer__figure">
                             <img src="https://via.placeholder.com/57x57" class="answer__img" alt="answer" width="57"
                                 height="57">
@@ -426,7 +427,15 @@
 
         <div class="results hide">
             <div class="points">
-                <h4 class="points__title">Uy casi!</h4>
+                <div class="points__result hide" data-min="0" data-max="50">
+                    <h4 class="points__title">Uy que drapie!</h4>
+                </div>
+                <div class="points__result hide" data-min="50" data-max="100">
+                    <h4 class="points__title">Uy casi!</h4>
+                </div>
+                <div class="points__result hide" data-min="100" data-max="200">
+                    <h4 class="points__title">Muy bueno!</h4>
+                </div>
                 <p class="points__texto">Respondiste correctamente 3 preguntas</p>
                 <ul class="points__ul">
 
