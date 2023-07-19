@@ -389,7 +389,8 @@ button {
     width: 11px;
     transition: all .2s;
     transform: rotate(90deg);
-    top: 3px;
+    top: 1px;
+    animation: arrow 950ms ease-out infinite;
 }
 
 .arrow:before,
@@ -568,6 +569,27 @@ button {
     60% {
         transform: translate3d(4px, 0, 0);
     }
+}
+
+@keyframes arrow {
+
+
+    0% {
+        top: 1px;
+    }
+
+
+    50% {
+        top: 7px;
+
+    }
+
+
+    100% {
+        top: 1px;
+    }
+
+
 }
 
 
