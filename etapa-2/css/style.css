@@ -99,9 +99,13 @@ button {
     font-display: swap;
 }
 
-.container {
+.trivia {
+    border: 1px solid #e0e0e0;
     margin: auto;
     max-width: 800px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
 }
 
 
@@ -368,7 +372,7 @@ button {
     border-radius: 125px;
     max-width: 316px;
     padding: 16px;
-    margin: 0 auto 20px;
+    margin: 0 auto;
     align-items: center;
     justify-content: center;
     gap: 13px;
@@ -594,6 +598,10 @@ button {
 
 
 @media (min-width: 650px) {
+    .trivia {
+        padding: 0 0 15px;
+    }
+
     .header__desc {
         font-size: 18px;
         line-height: 1.2;

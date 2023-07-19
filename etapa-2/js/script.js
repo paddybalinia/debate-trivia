@@ -18,12 +18,6 @@
     }
 
     ButtonReset.addEventListener("click", onButtonReset, false);
-
-    var iframeTriva = window.parent.document.querySelector("div");
-    iframeTriva.style.border = "1px solid #e0e0e0";
-    iframeTriva.style.borderRadius = "10px";
-    iframeTriva.style.overflow = "hidden";
-    iframeTriva.style.position = "relative";
   }
 
   // Events
@@ -287,7 +281,7 @@
     respuestas = [];
 
     setTimeout(() => {
-      var containerHeight = document.querySelector(".container").offsetHeight;
+      var containerHeight = document.querySelector(".trivia").offsetHeight;
       window.parent.postMessage(containerHeight, window.location);
 
       setTimeout(() => {
@@ -304,7 +298,7 @@
   }
 
   window.onload = function () {
-    var triviaHeight = document.querySelector(".container").offsetHeight;
+    var triviaHeight = document.querySelector(".trivia").offsetHeight;
 
     setTimeout(() => {
       window.parent.postMessage(triviaHeight, window.location);
