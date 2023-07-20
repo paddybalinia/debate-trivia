@@ -5,6 +5,7 @@
     --bg-light-succes: #BFFFD9;
     --font-1: "Graphik", sans-serif;
     --font-2: "Mackinac Pro Book", sans-serif;
+    --font-3: "Mackinac Pro Italic", sans-serif;
 }
 
 * {
@@ -99,6 +100,13 @@ button {
     font-display: swap;
 }
 
+@font-face {
+    font-family: "Mackinac Pro Italic";
+    src: url("../fonts/mackinacproitalic-700.woff2") format("woff2");
+    font-weight: 700;
+    font-display: swap;
+}
+
 .trivia {
     border: 1px solid #e0e0e0;
     margin: auto;
@@ -139,7 +147,7 @@ button {
 
 .trivia__cintillo {
     color: black;
-    font: bold 16px/1.3 var(--font-2);
+    font: bold 16px/1.3 var(--font-3);
     font-style: italic;
 }
 
@@ -163,7 +171,7 @@ button {
     box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.3);
     border-radius: 14px;
     gap: 20px;
-    padding: 15px 12px 15px 20px;
+    padding: 20px;
     position: relative;
     display: flex;
     min-height: 225px;
@@ -619,7 +627,6 @@ button {
 
     .question {
         margin: 0 0 10px;
-        padding: 30px 20px 30px 30px;
     }
 
     .question__quote {
