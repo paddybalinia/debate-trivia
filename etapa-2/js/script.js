@@ -155,6 +155,10 @@
         });
       }, "500");
     } else {
+      if (this.classList.contains("showresult")) {
+        return;
+      }
+      this.classList.add("showresult");
       showResult();
     }
   }
@@ -237,8 +241,13 @@
     }
 
     if (succesCount > 0) {
-      textResult.textContent =
-        "Respondiste correctamente " + succesCount + " preguntas";
+      if (succesCount == 1) {
+        textResult.textContent =
+          "Respondiste correctamente " + succesCount + " pregunta";
+      } else {
+        textResult.textContent =
+          "Respondiste correctamente " + succesCount + " preguntas";
+      }
     } else {
       textResult.textContent = "No respondiste correctamente ninguna pregunta";
     }
@@ -247,6 +256,7 @@
   function onButtonReset() {
     var Header = document.querySelector(".header"),
       Results = document.querySelector(".results"),
+      BtnResult = document.querySelector(".showresult"),
       answerElement = document.querySelectorAll(".answer__li"),
       revealElement = document.querySelectorAll(".container-reveal"),
       alertElement = document.querySelectorAll(".alert"),
@@ -260,6 +270,9 @@
     Confetti.style.opacity = 0;
     Confetti.style.transition = "opacity .3s linear";
     Confetti.remove();
+
+    // Reset btn result
+    BtnResult.classList.remove("showresult");
 
     // Reset de todas las respuestas
     for (let e = 0; e < answerElement.length; e++) {
