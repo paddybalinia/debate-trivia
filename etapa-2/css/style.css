@@ -163,7 +163,7 @@ button {
     box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.3);
     border-radius: 14px;
     gap: 20px;
-    padding: 15px 12px 15px 20px;
+    padding: 20px;
     position: relative;
     display: flex;
     min-height: 225px;
@@ -619,7 +619,6 @@ button {
 
     .question {
         margin: 0 0 10px;
-        padding: 30px 20px 30px 30px;
     }
 
     .question__quote {
