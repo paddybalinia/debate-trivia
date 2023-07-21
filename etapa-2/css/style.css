@@ -526,15 +526,15 @@ button {
 .share {
     display: flex;
     flex-wrap: wrap;
-    text-align: center;
-    justify-content: center;
-    padding: 0 0 45px;
-    margin: 33px 0 0;
+    text-align: left;
+    justify-content: left;
+    padding: 6px 0 13px;
+    margin: 17px 0 0;
 }
 
 .share__title {
-    font: bold 13px/28px var(--font-1);
-    margin: 0 0 3px;
+    font: bold 16px/22px var(--font-3);
+    margin: 0 20px 3px;
     width: 100%;
 }
 
@@ -545,6 +545,7 @@ button {
     line-height: 24px;
     column-gap: 7px;
     align-items: center;
+    text-align: left;
     justify-content: center;
     padding: 9px;
     min-width: 55px;
@@ -747,6 +748,17 @@ button {
 
     .points {
         margin: 35px 50px 0;
+    }
+
+    .share {
+        max-width: 573px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 20px;
+    }
+
+    .share__title {
+        font: bold 18px/22px var(--font-3);
     }
 
     .suscribe {
