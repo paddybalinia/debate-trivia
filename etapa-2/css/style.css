@@ -110,7 +110,7 @@ button {
 .trivia {
     border: 1px solid #e0e0e0;
     margin: auto;
-    max-width: 800px;
+    max-width: 660px;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
@@ -526,15 +526,15 @@ button {
 .share {
     display: flex;
     flex-wrap: wrap;
-    text-align: center;
-    justify-content: center;
-    padding: 0 0 45px;
-    margin: 33px 0 0;
+    text-align: left;
+    justify-content: left;
+    padding: 6px 0 13px;
+    margin: 17px 0 0;
 }
 
 .share__title {
-    font: bold 13px/28px var(--font-1);
-    margin: 0 0 3px;
+    font: bold 16px/22px var(--font-3);
+    margin: 0 20px 3px;
     width: 100%;
 }
 
@@ -545,6 +545,7 @@ button {
     line-height: 24px;
     column-gap: 7px;
     align-items: center;
+    text-align: left;
     justify-content: center;
     padding: 9px;
     min-width: 55px;
@@ -554,6 +555,51 @@ button {
 .share__a:hover {
     background: rgba(0, 0, 0, .1);
 }
+
+/******
+*** SUSCRIBE
+*******/
+.suscribe {
+    border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 23px 0 20px;
+    margin: 40px 20px 0;
+}
+
+.suscribe__title {
+    font: bold 16px/22px var(--font-3);
+    margin: 0 0 19px;
+}
+
+.suscribe__fieldset {
+    display: flex;
+    gap: 6px;
+}
+
+.suscribe__button {
+    flex: 0 0 74px;
+    margin-left: auto;
+    border-radius: 125px;
+    width: 74px;
+    height: 42px;
+}
+
+.suscribe__input {
+    background: #F1F1F1;
+    border-radius: 125px;
+    border: 0;
+    font: 400 14px/20px var(--font-1);
+    padding: 7px 20px;
+    width: 100%;
+}
+
+.suscribe__hint {
+    font: 400 14px/20px var(--font-1);
+    margin: 6px 0 0;
+    padding: 7px 20px;
+}
+
+
 
 .hide {
     display: none;
@@ -652,7 +698,7 @@ button {
     }
 
     .answer__li {
-        flex-basis: 47.45%;
+        flex-basis: 47.3%;
     }
 
     .button:hover .arrow {
@@ -702,5 +748,40 @@ button {
 
     .points {
         margin: 35px 50px 0;
+    }
+
+    .share {
+        max-width: 573px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 20px;
+    }
+
+    .share__title {
+        font: bold 18px/22px var(--font-3);
+    }
+
+    .suscribe {
+        max-width: 540px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .suscribe__title {
+        font: bold 18px/22px var(--font-3);
+        margin: 0 0 21px;
+    }
+
+    .suscribe__fieldset {
+        gap: 10px;
+    }
+
+    .suscribe__input {
+        font-size: 16px;
+        padding: 14px 32px;
+    }
+
+    .suscribe__button {
+        height: 48px;
     }
 }
