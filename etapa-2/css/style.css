@@ -599,7 +599,13 @@ button {
     padding: 7px 20px;
 }
 
+.newsletter-invalid .suscribe__hint {
+    display: block;
+}
 
+.form-succes .suscribe-success {
+    display: block;
+}
 
 .hide {
     display: none;

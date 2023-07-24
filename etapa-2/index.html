@@ -446,24 +446,44 @@
                 <span class="button__text">Volver a jugar</span>
             </button>
 
-            <div class="suscribe">
 
-                <form class="suscribe__form" action="#" method="post" novalidate target="_blank">
-                    <h4 class="suscribe__title">Quiero enterarme del próximo quiz</h4>
-                    <fieldset class="suscribe__fieldset">
-                        <input class="suscribe__input" placeholder="Ingresa tu E-mail" type="email" name="suscribe" />
-                        <button class="button suscribe__button" type="submit">
-                            <svg width="21" height="18" viewBox="0 0 21 18">
-                                <path
-                                    d="M1.99512 0H19.9951C20.2603 0 20.5147 0.10243 20.7022 0.284757C20.8898 0.467084 20.9951 0.714373 20.9951 0.972222V16.5278C20.9951 16.7856 20.8898 17.0329 20.7022 17.2152C20.5147 17.3976 20.2603 17.5 19.9951 17.5H1.99512C1.7299 17.5 1.47555 17.3976 1.28801 17.2152C1.10047 17.0329 0.995117 16.7856 0.995117 16.5278V0.972222C0.995117 0.714373 1.10047 0.467084 1.28801 0.284757C1.47555 0.10243 1.7299 0 1.99512 0ZM18.9951 4.12028L11.0671 11.0231L2.99512 4.09889V15.5556H18.9951V4.12028ZM3.50612 1.94444L11.0561 8.42139L18.4971 1.94444H3.50612Z"
-                                    fill="white" />
-                            </svg>
-                        </button>
-                    </fieldset>
-                    <p class="suscribe__hint hide">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+
+            <div class="suscribe" id="mc_embed_signup">
+                <form class="suscribe__form" action="" id=" mc-embedded-subscribe-form"
+                    name="mc-embedded-subscribe-form" class="validate" target="_top" novalidate>
+                    <div id="mc_embed_signup_scroll">
+                        <h4 class="suscribe__title">Quiero enterarme del próximo quiz</h4>
+                        <fieldset class="suscribe__fieldset">
+                            <input type="email" value="" placeholder="Ingresa tu E-mail" name="EMAIL"
+                                class="suscribe__input required email" id="mce-EMAIL" required>
+                            <button class="button suscribe__button" type="submit">
+                                <svg width="21" height="18" viewBox="0 0 21 18">
+                                    <path
+                                        d="M1.99512 0H19.9951C20.2603 0 20.5147 0.10243 20.7022 0.284757C20.8898 0.467084 20.9951 0.714373 20.9951 0.972222V16.5278C20.9951 16.7856 20.8898 17.0329 20.7022 17.2152C20.5147 17.3976 20.2603 17.5 19.9951 17.5H1.99512C1.7299 17.5 1.47555 17.3976 1.28801 17.2152C1.10047 17.0329 0.995117 16.7856 0.995117 16.5278V0.972222C0.995117 0.714373 1.10047 0.467084 1.28801 0.284757C1.47555 0.10243 1.7299 0 1.99512 0ZM18.9951 4.12028L11.0671 11.0231L2.99512 4.09889V15.5556H18.9951V4.12028ZM3.50612 1.94444L11.0561 8.42139L18.4971 1.94444H3.50612Z"
+                                        fill="white" />
+                                </svg>
+                            </button>
+                        </fieldset>
+                        <div hidden="true"><input type="hidden" name="tags" value="414022"></div>
+
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+                                name="b_e4231a24b452b97d090ececc9_1412f9067f" tabindex="-1" value=""></div>
+
+                        <div class="suscribe__hint hide error" visible-when-invalid="valueMissing"
+                            validation-for="suscribe_email">Debes ingresar un e-mail válido.</div>
+                    </div>
+
+                    <div submit-error class="suscribe__hint suscribe-success hide succes"><span>¡Muchas gracias!</span>
+                        Ya estás suscrito
+                        a
+                        nuestro newsletter.</div>
+                    <div submit-success class="suscribe__hint hide succes"><span>¡Muchas gracias!</span> Ya estás
+                        suscrito a
+                        nuestro newsletter.</div>
                 </form>
-
             </div>
+
 
             <div class="share">
                 <p class="share__title">¡Compartilo con tus amigos!</p>
