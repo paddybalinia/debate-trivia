@@ -109,8 +109,6 @@
       window.parent.postMessage(document.body.scrollHeight, window.location);
 
       setTimeout(() => {
-        Reveal.scrollIntoView();
-
         window.requestAnimationFrame(() => {
           var message = {
             sentinel: "amp",
@@ -119,8 +117,12 @@
           };
           window.parent.postMessage(message, "*");
         });
-      }, "400");
-    }, "400");
+
+        setTimeout(() => {
+          Reveal.scrollIntoView();
+        }, "300");
+      }, "200");
+    }, "100");
 
     var NumBig = getNumberBig(Answers);
 
@@ -202,20 +204,25 @@
     const nextLi = parent.nextElementSibling;
 
     if (nextLi) {
-      nextLi.classList.remove("hide");
-      window.parent.postMessage(document.body.scrollHeight, window.location);
       setTimeout(() => {
-        nextLi.scrollIntoView();
+        nextLi.classList.remove("hide");
+        window.parent.postMessage(document.body.scrollHeight, window.location);
 
-        window.requestAnimationFrame(() => {
-          var message = {
-            sentinel: "amp",
-            type: "embed-size",
-            height: document.body.scrollHeight,
-          };
-          window.parent.postMessage(message, "*");
-        });
-      }, "500");
+        setTimeout(() => {
+          window.requestAnimationFrame(() => {
+            var message = {
+              sentinel: "amp",
+              type: "embed-size",
+              height: document.body.scrollHeight,
+            };
+            window.parent.postMessage(message, "*");
+          });
+
+          setTimeout(() => {
+            nextLi.scrollIntoView();
+          }, "300");
+        }, "200");
+      }, "100");
     } else {
       if (this.classList.contains("showresult")) {
         return;
@@ -270,22 +277,24 @@
       });
     }
 
-    window.parent.postMessage(document.body.scrollHeight, window.location);
-
     setTimeout(() => {
-      Results.scrollIntoView();
+      window.parent.postMessage(document.body.scrollHeight, window.location);
 
-      window.requestAnimationFrame(() => {
-        var message = {
-          sentinel: "amp",
-          type: "embed-size",
-          height: document.body.scrollHeight,
-        };
-        window.parent.postMessage(message, "*");
-      });
-
-      AnimConfetti();
-    }, "800");
+      setTimeout(() => {
+        window.requestAnimationFrame(() => {
+          var message = {
+            sentinel: "amp",
+            type: "embed-size",
+            height: document.body.scrollHeight,
+          };
+          window.parent.postMessage(message, "*");
+        });
+        setTimeout(() => {
+          Results.scrollIntoView();
+          AnimConfetti();
+        }, "300");
+      }, "200");
+    }, "100");
 
     countSuccess();
   }
