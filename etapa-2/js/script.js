@@ -2,7 +2,9 @@
   "use strict";
 
   var respuestas = [],
-    cantPoints = 0;
+    cantPoints = 0,
+    FormNewsletter = document.querySelector(".suscribe"),
+    FormEmail = FormNewsletter.querySelector(".suscribe__input");
 
   //Constructor
   function Constructor() {
@@ -18,6 +20,66 @@
     }
 
     ButtonReset.addEventListener("click", onButtonReset, false);
+
+    FormNewsletter.addEventListener("submit", onSubmitNewsltter, false);
+    FormEmail.addEventListener("keypress", onTypeEmail, false);
+    FormEmail.addEventListener("keyup", onTypeEmail, false);
+  }
+
+  // Susribe
+
+  function isValidEmail(email) {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+  function showErrorHint() {
+    FormEmail.parentNode.parentNode.classList.add("newsletter-invalid");
+  }
+  function hideErrorHint() {
+    FormEmail.parentNode.parentNode.classList.remove("newsletter-invalid");
+  }
+  function showSuccess() {
+    FormNewsletter.classList.add("form-succes");
+    setTimeout(function () {
+      FormNewsletter.classList.remove("form-succes");
+    }, 3000);
+  }
+  function onTypeEmail() {
+    if (isValidEmail(FormEmail.value)) {
+      hideErrorHint();
+    } else {
+      showErrorHint();
+    }
+  }
+  function onSubmitNewsltter(event) {
+    event.preventDefault();
+
+    if (!isValidEmail(FormEmail.value)) {
+      showErrorHint();
+      return;
+    }
+
+    var params = {
+      u: "e4231a24b452b97d090ececc9",
+      id: "1412f9067f",
+      tags: "414022",
+      MERGE0: FormEmail.value,
+    };
+
+    fetch(
+      "https://debate.us13.list-manage.com/subscribe/post?" +
+        new URLSearchParams(params).toString()
+    )
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (html) {
+        showSuccess();
+      })
+      .catch(function (error) {
+        showSuccess();
+      });
   }
 
   // Events
