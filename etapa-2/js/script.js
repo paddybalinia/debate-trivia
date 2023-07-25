@@ -228,6 +228,13 @@
         return;
       }
       this.classList.add("showresult");
+      var Header = document.querySelector(".header"),
+        triviaLi = document.querySelectorAll(".trivia__li");
+      // Ocultamos tods las preguntas
+      for (let i = 0; i < triviaLi.length; i++) {
+        triviaLi[i].classList.add("hide");
+      }
+      Header.scrollIntoView();
       showResult();
     }
   }
