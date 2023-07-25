@@ -458,8 +458,8 @@
       deviation = 100,
       dxThetaMin = -0.1,
       dxThetaMax = -dxThetaMin - dxThetaMin,
-      dyMin = 0.13,
-      dyMax = 0.18,
+      dyMin = 0.18,
+      dyMax = 0.23,
       dThetaMin = 0.4,
       dThetaMax = 0.7 - dThetaMin;
 
