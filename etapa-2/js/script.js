@@ -451,7 +451,7 @@
       confetti = [];
 
     var particles = 10,
-      spread = 40,
+      spread = 20,
       sizeMin = 3,
       sizeMax = 12 - sizeMin,
       eccentricity = 10,
