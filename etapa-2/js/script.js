@@ -228,8 +228,10 @@
         return;
       }
       this.classList.add("showresult");
+
       var Header = document.querySelector(".header"),
         triviaLi = document.querySelectorAll(".trivia__li");
+
       // Ocultamos tods las preguntas
       for (let i = 0; i < triviaLi.length; i++) {
         triviaLi[i].classList.add("hide");
@@ -349,8 +351,8 @@
     Confetti.style.transition = "opacity .3s linear";
     Confetti.remove();
 
-    // Reset btn result
-    BtnResult.classList.remove("showresult");
+    // Ocultamos la tabla resultados
+    Results.classList.add("hide");
 
     // Reset de todas las respuestas
     for (let e = 0; e < answerElement.length; e++) {
@@ -358,36 +360,35 @@
       answerElement[e].classList.remove("error");
       answerElement[e].classList.remove("answer__li--disabled");
     }
-    setTimeout(() => {
-      // Reset de tabla de resultados
-      const pointsUlElements = document.querySelectorAll(".points__ul > li");
 
-      for (const pointsUlElement of pointsUlElements) {
-        pointsUlElement.remove();
-      }
+    // Reset de tabla de resultados
+    const pointsUlElements = document.querySelectorAll(".points__ul > li");
 
-      // Ocultamos tods las preguntas
-      for (let i = 0; i < triviaLi.length; i++) {
-        triviaLi[i].classList.add("hide");
-      }
+    for (const pointsUlElement of pointsUlElements) {
+      pointsUlElement.remove();
+    }
 
-      // Ocultamos tods las respuestas
-      for (let i = 0; i < revealElement.length; i++) {
-        revealElement[i].classList.add("hide");
-      }
+    // Ocultamos tods las preguntas
+    for (let i = 0; i < triviaLi.length; i++) {
+      triviaLi[i].classList.add("hide");
+    }
 
-      // Reseteamos las alertas
-      for (let i = 0; i < alertElement.length; i++) {
-        alertElement[i].classList.remove("alert--error");
-        alertElement[i].classList.remove("alert--succes");
-      }
+    // Ocultamos tods las respuestas
+    for (let i = 0; i < revealElement.length; i++) {
+      revealElement[i].classList.add("hide");
+    }
 
-      // Ocultamos la tabla resultados
-      Results.classList.add("hide");
+    // Reseteamos las alertas
+    for (let i = 0; i < alertElement.length; i++) {
+      alertElement[i].classList.remove("alert--error");
+      alertElement[i].classList.remove("alert--succes");
+    }
 
-      // Mostramos la primera pregunta
-      triviaLiFirst.classList.remove("hide");
-    }, "800");
+    // Mostramos la primera pregunta
+    triviaLiFirst.classList.remove("hide");
+
+    // Reset btn result
+    BtnResult.classList.remove("showresult");
 
     respuestas = [];
 
