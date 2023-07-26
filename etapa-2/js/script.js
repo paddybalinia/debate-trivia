@@ -42,13 +42,13 @@
   function showSuccess() {
     FormNewsletter.classList.add("form-succes");
     var containerHeight = document.querySelector(".trivia").offsetHeight;
-    resizeTrivia({ elemento: containerHeight });
+    resizeDoc();
 
     setTimeout(function () {
       FormNewsletter.classList.remove("form-succes");
 
       containerHeight = document.querySelector(".trivia").offsetHeight;
-      resizeTrivia({ elemento: containerHeight });
+      resizeDoc();
     }, 3000);
   }
   function onTypeEmail() {
@@ -58,18 +58,48 @@
       showErrorHint();
     }
     var containerHeight = document.querySelector(".trivia").offsetHeight;
-    resizeTrivia({ height: containerHeight });
+    resizeDoc();
   }
 
+  function resizeDoc() {
+    var _scrollHeight = document.body.scrollHeight;
+    window.parent.postMessage(_scrollHeight, window.location);
+
+    setTimeout(() => {
+      window.requestAnimationFrame(() => {
+        var message = {
+          sentinel: "amp",
+          type: "embed-size",
+          height: _scrollHeight,
+        };
+        window.parent.postMessage(message, "*");
+      });
+    }, "200");
+  }
   /**
    *
    * @param {*} height se le pasa el height para que ajuste
    * @param {*} delay1 es el delay del primer intervalo de tiempo
    * @param {*} delay2 es el delay del segundo intervalo de tiempo
+   * @param {*} delay3 es el delay del tercero intervalo de tiempo, es falso por default
+   * @param {*} elementScroll elemento al que se le hace Scroll, null por dafault
+   * @param {*} showConfetti boolean por defecto no se muestra
+   * @param {*} ShowElement Elemento a mostrar
    */
-  function resizeTrivia({ height = null, delay1 = "800", delay2 = "400" }) {
+  function resizeTrivia({
+    height = null,
+    delay1 = "800",
+    delay2 = "400",
+    delay3 = false,
+    elementScroll = null,
+    showConfetti = false,
+    ShowElement = false,
+  }) {
     setTimeout(() => {
-      window.parent.postMessage(height, window.location);
+      if (ShowElement) {
+        ShowElement.classList.remove("hide");
+        resizeDoc();
+      }
 
       setTimeout(() => {
         window.requestAnimationFrame(() => {
@@ -80,6 +110,16 @@
           };
           window.parent.postMessage(message, "*");
         });
+
+        if (delay3 && elementScroll) {
+          setTimeout(() => {
+            elementScroll.scrollIntoView();
+
+            if (showConfetti) {
+              AnimConfetti();
+            }
+          }, delay3);
+        }
       }, delay2);
     }, delay1);
   }
@@ -136,25 +176,16 @@
       Answers[i].classList.add("answer__li--disabled");
     }
 
-    setTimeout(() => {
-      Reveal.classList.remove("hide");
-      window.parent.postMessage(document.body.scrollHeight, window.location);
-
-      setTimeout(() => {
-        window.requestAnimationFrame(() => {
-          var message = {
-            sentinel: "amp",
-            type: "embed-size",
-            height: document.body.scrollHeight,
-          };
-          window.parent.postMessage(message, "*");
-        });
-
-        setTimeout(() => {
-          Reveal.scrollIntoView();
-        }, "300");
-      }, "200");
-    }, "100");
+    var scrollHeight = document.body.scrollHeight;
+    resizeTrivia({
+      height: scrollHeight,
+      delay1: "100",
+      delay2: "200",
+      delay3: "300",
+      elementScroll: Reveal,
+      showConfetti: false,
+      ShowElement: Reveal,
+    });
 
     var NumBig = getNumberBig(Answers);
 
@@ -236,25 +267,16 @@
     const nextLi = parent.nextElementSibling;
 
     if (nextLi) {
-      setTimeout(() => {
-        nextLi.classList.remove("hide");
-        window.parent.postMessage(document.body.scrollHeight, window.location);
-
-        setTimeout(() => {
-          window.requestAnimationFrame(() => {
-            var message = {
-              sentinel: "amp",
-              type: "embed-size",
-              height: document.body.scrollHeight,
-            };
-            window.parent.postMessage(message, "*");
-          });
-
-          setTimeout(() => {
-            nextLi.scrollIntoView();
-          }, "300");
-        }, "200");
-      }, "100");
+      var scrollHeight = document.body.scrollHeight;
+      resizeTrivia({
+        height: scrollHeight,
+        delay1: "100",
+        delay2: "200",
+        delay3: "300",
+        elementScroll: nextLi,
+        showConfetti: false,
+        ShowElement: nextLi,
+      });
     } else {
       if (this.classList.contains("showresult")) {
         return;
@@ -317,25 +339,16 @@
         }
       });
     }
-
-    setTimeout(() => {
-      window.parent.postMessage(document.body.scrollHeight, window.location);
-
-      setTimeout(() => {
-        window.requestAnimationFrame(() => {
-          var message = {
-            sentinel: "amp",
-            type: "embed-size",
-            height: document.body.scrollHeight,
-          };
-          window.parent.postMessage(message, "*");
-        });
-        setTimeout(() => {
-          Results.scrollIntoView();
-          AnimConfetti();
-        }, "300");
-      }, "200");
-    }, "100");
+    var scrollHeight = document.body.scrollHeight;
+    resizeTrivia({
+      height: scrollHeight,
+      delay1: "100",
+      delay2: "200",
+      delay3: "300",
+      elementScroll: Results,
+      showConfetti: true,
+      ShowElement: Results,
+    });
 
     countSuccess();
   }
@@ -438,9 +451,7 @@
   }
 
   window.onload = function () {
-    var triviaHeight = document.querySelector(".trivia").offsetHeight;
-
-    resizeTrivia({ height: triviaHeight, delay1: "400", delay2: "400" });
+    resizeDoc();
   };
 
   function AnimConfetti() {
