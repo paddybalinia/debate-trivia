@@ -26,7 +26,7 @@
     FormEmail.addEventListener("keyup", onTypeEmail, false);
   }
 
-  // Susribe
+  // Suscribe
 
   function isValidEmail(email) {
     const re =
@@ -41,8 +41,14 @@
   }
   function showSuccess() {
     FormNewsletter.classList.add("form-succes");
+    var containerHeight = document.querySelector(".trivia").offsetHeight;
+    resizeTrivia({ elemento: containerHeight });
+
     setTimeout(function () {
       FormNewsletter.classList.remove("form-succes");
+
+      containerHeight = document.querySelector(".trivia").offsetHeight;
+      resizeTrivia({ elemento: containerHeight });
     }, 3000);
   }
   function onTypeEmail() {
@@ -51,7 +57,33 @@
     } else {
       showErrorHint();
     }
+    var containerHeight = document.querySelector(".trivia").offsetHeight;
+    resizeTrivia({ height: containerHeight });
   }
+
+  /**
+   *
+   * @param {*} height se le pasa el height para que ajuste
+   * @param {*} delay1 es el delay del primer intervalo de tiempo
+   * @param {*} delay2 es el delay del segundo intervalo de tiempo
+   */
+  function resizeTrivia({ height = null, delay1 = "800", delay2 = "400" }) {
+    setTimeout(() => {
+      window.parent.postMessage(height, window.location);
+
+      setTimeout(() => {
+        window.requestAnimationFrame(() => {
+          var message = {
+            sentinel: "amp",
+            type: "embed-size",
+            height: height,
+          };
+          window.parent.postMessage(message, "*");
+        });
+      }, delay2);
+    }, delay1);
+  }
+
   function onSubmitNewsltter(event) {
     event.preventDefault();
 
@@ -228,6 +260,15 @@
         return;
       }
       this.classList.add("showresult");
+
+      var Header = document.querySelector(".header"),
+        triviaLi = document.querySelectorAll(".trivia__li");
+
+      // Ocultamos tods las preguntas
+      for (let i = 0; i < triviaLi.length; i++) {
+        triviaLi[i].classList.add("hide");
+      }
+      Header.scrollIntoView();
       showResult();
     }
   }
@@ -342,8 +383,8 @@
     Confetti.style.transition = "opacity .3s linear";
     Confetti.remove();
 
-    // Reset btn result
-    BtnResult.classList.remove("showresult");
+    // Ocultamos la tabla resultados
+    Results.classList.add("hide");
 
     // Reset de todas las respuestas
     for (let e = 0; e < answerElement.length; e++) {
@@ -351,36 +392,35 @@
       answerElement[e].classList.remove("error");
       answerElement[e].classList.remove("answer__li--disabled");
     }
-    setTimeout(() => {
-      // Reset de tabla de resultados
-      const pointsUlElements = document.querySelectorAll(".points__ul > li");
 
-      for (const pointsUlElement of pointsUlElements) {
-        pointsUlElement.remove();
-      }
+    // Reset de tabla de resultados
+    const pointsUlElements = document.querySelectorAll(".points__ul > li");
 
-      // Ocultamos tods las preguntas
-      for (let i = 0; i < triviaLi.length; i++) {
-        triviaLi[i].classList.add("hide");
-      }
+    for (const pointsUlElement of pointsUlElements) {
+      pointsUlElement.remove();
+    }
 
-      // Ocultamos tods las respuestas
-      for (let i = 0; i < revealElement.length; i++) {
-        revealElement[i].classList.add("hide");
-      }
+    // Ocultamos tods las preguntas
+    for (let i = 0; i < triviaLi.length; i++) {
+      triviaLi[i].classList.add("hide");
+    }
 
-      // Reseteamos las alertas
-      for (let i = 0; i < alertElement.length; i++) {
-        alertElement[i].classList.remove("alert--error");
-        alertElement[i].classList.remove("alert--succes");
-      }
+    // Ocultamos tods las respuestas
+    for (let i = 0; i < revealElement.length; i++) {
+      revealElement[i].classList.add("hide");
+    }
 
-      // Ocultamos la tabla resultados
-      Results.classList.add("hide");
+    // Reseteamos las alertas
+    for (let i = 0; i < alertElement.length; i++) {
+      alertElement[i].classList.remove("alert--error");
+      alertElement[i].classList.remove("alert--succes");
+    }
 
-      // Mostramos la primera pregunta
-      triviaLiFirst.classList.remove("hide");
-    }, "800");
+    // Mostramos la primera pregunta
+    triviaLiFirst.classList.remove("hide");
+
+    // Reset btn result
+    BtnResult.classList.remove("showresult");
 
     respuestas = [];
 
@@ -443,15 +483,15 @@
       confetti = [];
 
     var particles = 10,
-      spread = 40,
+      spread = 20,
       sizeMin = 3,
       sizeMax = 12 - sizeMin,
       eccentricity = 10,
       deviation = 100,
       dxThetaMin = -0.1,
       dxThetaMax = -dxThetaMin - dxThetaMin,
-      dyMin = 0.13,
-      dyMax = 0.18,
+      dyMin = 0.18,
+      dyMax = 0.23,
       dThetaMin = 0.4,
       dThetaMax = 0.7 - dThetaMin;
 
