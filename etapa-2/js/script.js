@@ -26,7 +26,7 @@
     FormEmail.addEventListener("keyup", onTypeEmail, false);
   }
 
-  // Susribe
+  // Suscribe
 
   function isValidEmail(email) {
     const re =
@@ -41,8 +41,14 @@
   }
   function showSuccess() {
     FormNewsletter.classList.add("form-succes");
+    var containerHeight = document.querySelector(".trivia").offsetHeight;
+    resizeTrivia({ elemento: containerHeight });
+
     setTimeout(function () {
       FormNewsletter.classList.remove("form-succes");
+
+      containerHeight = document.querySelector(".trivia").offsetHeight;
+      resizeTrivia({ elemento: containerHeight });
     }, 3000);
   }
   function onTypeEmail() {
@@ -51,7 +57,33 @@
     } else {
       showErrorHint();
     }
+    var containerHeight = document.querySelector(".trivia").offsetHeight;
+    resizeTrivia({ height: containerHeight });
   }
+
+  /**
+   *
+   * @param {*} height se le pasa el height para que ajuste
+   * @param {*} delay1 es el delay del primer intervalo de tiempo
+   * @param {*} delay2 es el delay del segundo intervalo de tiempo
+   */
+  function resizeTrivia({ height = null, delay1 = "800", delay2 = "400" }) {
+    setTimeout(() => {
+      window.parent.postMessage(height, window.location);
+
+      setTimeout(() => {
+        window.requestAnimationFrame(() => {
+          var message = {
+            sentinel: "amp",
+            type: "embed-size",
+            height: height,
+          };
+          window.parent.postMessage(message, "*");
+        });
+      }, delay2);
+    }, delay1);
+  }
+
   function onSubmitNewsltter(event) {
     event.preventDefault();
 
