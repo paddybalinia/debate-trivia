@@ -433,40 +433,14 @@
     });
 
     // Resize de iframe
-    setTimeout(() => {
-      var containerHeight = document.querySelector(".trivia").offsetHeight;
-      window.parent.postMessage(containerHeight, window.location);
-
-      setTimeout(() => {
-        window.requestAnimationFrame(() => {
-          var message = {
-            sentinel: "amp",
-            type: "embed-size",
-            height: containerHeight,
-          };
-          window.parent.postMessage(message, "*");
-        });
-      }, "400");
-    }, "800");
+    var containerHeight = document.querySelector(".trivia").offsetHeight;
+    resizeTrivia({ height: containerHeight, delay1: "800", delay2: "400" });
   }
 
   window.onload = function () {
     var triviaHeight = document.querySelector(".trivia").offsetHeight;
 
-    setTimeout(() => {
-      window.parent.postMessage(triviaHeight, window.location);
-
-      setTimeout(() => {
-        window.requestAnimationFrame(() => {
-          var message = {
-            sentinel: "amp",
-            type: "embed-size",
-            height: triviaHeight,
-          };
-          window.parent.postMessage(message, "*");
-        });
-      }, "400");
-    }, "400");
+    resizeTrivia({ height: triviaHeight, delay1: "400", delay2: "400" });
   };
 
   function AnimConfetti() {
