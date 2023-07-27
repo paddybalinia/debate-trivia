@@ -488,8 +488,7 @@
     });
 
     // Resize de iframe
-    var containerHeight = document.querySelector(".trivia").offsetHeight;
-    resizeTrivia({ height: containerHeight });
+    resizeDoc();
   }
 
   window.onload = function () {
