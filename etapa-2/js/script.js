@@ -26,8 +26,11 @@
     FormEmail.addEventListener("keyup", onTypeEmail, false);
   }
 
-  // Suscribe
-
+  /**
+   * Suscribe
+   * @param {*} email
+   * @returns
+   */
   function isValidEmail(email) {
     const re =
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -76,6 +79,7 @@
       });
     }, "200");
   }
+
   /**
    *
    * @param {*} height se le pasa el height para que ajuste
@@ -124,6 +128,11 @@
     }, delay1);
   }
 
+  /**
+   * Mailchimp ajax request
+   * @param {*} event
+   * @returns response
+   */
   function onSubmitNewsltter(event) {
     event.preventDefault();
 
@@ -155,6 +164,11 @@
   }
 
   // Events
+
+  /**
+   * Event on click Answer
+   * @returns
+   */
   function onButtonAnswer() {
     var Parent = this.parentNode;
 
@@ -183,7 +197,6 @@
       delay2: "200",
       delay3: "300",
       elementScroll: Reveal,
-      showConfetti: false,
       ShowElement: Reveal,
     });
 
@@ -211,6 +224,11 @@
     AlertTitle.innerHTML = "¡Incorrecto!";
   }
 
+  /**
+   *
+   * @param {*} arrayNumbers points from the answers of the active question
+   * @returns returns the largest number
+   */
   function getNumberBig(arrayNumbers) {
     let mayor = null;
     arrayNumbers.forEach((elemento) => {
@@ -222,6 +240,10 @@
     return mayor;
   }
 
+  /**
+   *
+   * Event on click Buttons de share
+   */
   function onButtonShare(e) {
     e.preventDefault();
 
@@ -262,6 +284,10 @@
     }
   }
 
+  /**
+   *
+   * Event on click Buttons Next item
+   */
   function showNextItem() {
     const parent = this.parentElement.parentElement;
     const nextLi = parent.nextElementSibling;
@@ -274,7 +300,6 @@
         delay2: "200",
         delay3: "300",
         elementScroll: nextLi,
-        showConfetti: false,
         ShowElement: nextLi,
       });
     } else {
@@ -295,10 +320,20 @@
     }
   }
 
+  /**
+   *
+   * @param {*} respuesta boolean
+   * @returns array respuestas
+   */
   function agregarRespuesta(respuesta) {
     respuestas.push(respuesta);
   }
 
+  /**
+   *
+   * Event on click last question Button
+   * and show de results
+   */
   function showResult() {
     var Results = document.querySelector(".results");
     Results.classList.remove("hide");
@@ -353,7 +388,9 @@
     countSuccess();
   }
 
-  // En esta funcion solo cambiamos el texto de cuantas asertar
+  /**
+   * Show the text according to the correct answers
+   */
   function countSuccess() {
     var textResult = document.querySelector(".points__texto"),
       liElements = document.querySelectorAll(".points__li"),
@@ -378,6 +415,11 @@
     }
   }
 
+  /**
+   *
+   * Event on click reset Button
+   * Reset all items of the trivia
+   */
   function onButtonReset() {
     var Header = document.querySelector(".header"),
       Results = document.querySelector(".results"),
@@ -391,48 +433,48 @@
     Header.scrollIntoView();
     const Confetti = document.querySelector("body > div:last-child");
 
-    // Reset de Confetti en Fade
+    // Reset Confetti on Fade
     Confetti.style.opacity = 0;
     Confetti.style.transition = "opacity .3s linear";
     Confetti.remove();
 
-    // Ocultamos la tabla resultados
+    // Hide table result
     Results.classList.add("hide");
 
-    // Reset de todas las respuestas
+    // Reset all answers
     for (let e = 0; e < answerElement.length; e++) {
       answerElement[e].classList.remove("succes");
       answerElement[e].classList.remove("error");
       answerElement[e].classList.remove("answer__li--disabled");
     }
 
-    // Reset de tabla de resultados
+    // Reset result table
     const pointsUlElements = document.querySelectorAll(".points__ul > li");
 
     for (const pointsUlElement of pointsUlElements) {
       pointsUlElement.remove();
     }
 
-    // Ocultamos tods las preguntas
+    // Hide all questions
     for (let i = 0; i < triviaLi.length; i++) {
       triviaLi[i].classList.add("hide");
     }
 
-    // Ocultamos tods las respuestas
+    // Hide all answers
     for (let i = 0; i < revealElement.length; i++) {
       revealElement[i].classList.add("hide");
     }
 
-    // Reseteamos las alertas
+    // Reset alerts
     for (let i = 0; i < alertElement.length; i++) {
       alertElement[i].classList.remove("alert--error");
       alertElement[i].classList.remove("alert--succes");
     }
 
-    // Mostramos la primera pregunta
+    // Show first question
     triviaLiFirst.classList.remove("hide");
 
-    // Reset btn result
+    // Reset Button result
     BtnResult.classList.remove("showresult");
 
     respuestas = [];
@@ -447,16 +489,18 @@
 
     // Resize de iframe
     var containerHeight = document.querySelector(".trivia").offsetHeight;
-    resizeTrivia({ height: containerHeight, delay1: "800", delay2: "400" });
+    resizeTrivia({ height: containerHeight });
   }
 
   window.onload = function () {
     resizeDoc();
   };
 
+  /**
+   * Confetti Animation
+   * @autor https://codepen.io/bananascript/pen/EyZeWm
+   */
   function AnimConfetti() {
-    // https://codepen.io/bananascript/pen/EyZeWm
-
     // Globals
     var random = Math.random,
       cos = Math.cos,
