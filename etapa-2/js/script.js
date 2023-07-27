@@ -433,48 +433,48 @@
     Header.scrollIntoView();
     const Confetti = document.querySelector("body > div:last-child");
 
-    // Reset de Confetti en Fade
+    // Reset Confetti on Fade
     Confetti.style.opacity = 0;
     Confetti.style.transition = "opacity .3s linear";
     Confetti.remove();
 
-    // Ocultamos la tabla resultados
+    // Hide table result
     Results.classList.add("hide");
 
-    // Reset de todas las respuestas
+    // Reset all answers
     for (let e = 0; e < answerElement.length; e++) {
       answerElement[e].classList.remove("succes");
       answerElement[e].classList.remove("error");
       answerElement[e].classList.remove("answer__li--disabled");
     }
 
-    // Reset de tabla de resultados
+    // Reset result table
     const pointsUlElements = document.querySelectorAll(".points__ul > li");
 
     for (const pointsUlElement of pointsUlElements) {
       pointsUlElement.remove();
     }
 
-    // Ocultamos tods las preguntas
+    // Hide all questions
     for (let i = 0; i < triviaLi.length; i++) {
       triviaLi[i].classList.add("hide");
     }
 
-    // Ocultamos tods las respuestas
+    // Hide all answers
     for (let i = 0; i < revealElement.length; i++) {
       revealElement[i].classList.add("hide");
     }
 
-    // Reseteamos las alertas
+    // Reset alerts
     for (let i = 0; i < alertElement.length; i++) {
       alertElement[i].classList.remove("alert--error");
       alertElement[i].classList.remove("alert--succes");
     }
 
-    // Mostramos la primera pregunta
+    // Show first question
     triviaLiFirst.classList.remove("hide");
 
-    // Reset btn result
+    // Reset Button result
     BtnResult.classList.remove("showresult");
 
     respuestas = [];
