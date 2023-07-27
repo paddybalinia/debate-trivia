@@ -91,7 +91,7 @@
     delay1 = "800",
     delay2 = "400",
     delay3 = false,
-    elementScroll = null,
+    elementScroll = false,
     showConfetti = false,
     ShowElement = false,
   }) {
@@ -186,13 +186,13 @@
       ShowElement: Reveal,
     });
 
-    var NumBig = getNumberBig(Answers);
+    var highNumber = getHighNumber(Answers);
 
     cantPoints = cantPoints + Number(this.dataset.points);
-    var isTrue = this.dataset.points == NumBig ? true : false;
-    agregarRespuesta(isTrue);
+    var answerType = this.dataset.points == highNumber ? true : false;
+    addAnswer(answerType);
 
-    if (this.dataset.points == NumBig) {
+    if (this.dataset.points == highNumber) {
       this.classList.add("succes");
       Alert.classList.add("alert--succes");
       AlertTitle.innerHTML = "¡Correcto!";
@@ -200,7 +200,7 @@
     }
 
     for (let i = 0; i < Answers.length; i++) {
-      if (Answers[i].dataset.points == NumBig) {
+      if (Answers[i].dataset.points == highNumber) {
         Answers[i].classList.add("succes");
       }
     }
@@ -215,15 +215,15 @@
    * @param {*} arrayNumbers points from the answers of the active question
    * @returns returns the largest number
    */
-  function getNumberBig(arrayNumbers) {
-    let mayor = null;
+  function getHighNumber(arrayNumbers) {
+    var higher = null;
     arrayNumbers.forEach((elemento) => {
-      const number = parseInt(elemento.getAttribute("data-points"));
-      if (mayor === null || number > mayor) {
-        mayor = number;
+      var localNumber = parseInt(elemento.getAttribute("data-points"));
+      if (higher === null || localNumber > higher) {
+        higher = localNumber;
       }
     });
-    return mayor;
+    return higher;
   }
 
   /**
@@ -276,41 +276,43 @@
    */
   function showNextItem() {
     const parent = this.parentElement.parentElement;
-    const nextLi = parent.nextElementSibling;
+    const nextQuestion = parent.nextElementSibling;
 
-    if (nextLi) {
+    if (nextQuestion) {
       resizeTrivia({
         delay1: "100",
         delay2: "200",
         delay3: "300",
-        elementScroll: nextLi,
-        ShowElement: nextLi,
+        elementScroll: nextQuestion,
+        ShowElement: nextQuestion,
       });
-    } else {
-      if (this.classList.contains("showresult")) {
-        return;
-      }
-      this.classList.add("showresult");
-
-      var Header = document.querySelector(".header"),
-        triviaLi = document.querySelectorAll(".trivia__li");
-
-      // Ocultamos tods las preguntas
-      for (let i = 0; i < triviaLi.length; i++) {
-        triviaLi[i].classList.add("hide");
-      }
-      Header.scrollIntoView();
-      showResult();
+      return;
     }
+
+    if (this.classList.contains("showresult")) {
+      return;
+    }
+
+    this.classList.add("showresult");
+
+    var Header = document.querySelector(".header"),
+      triviaLi = document.querySelectorAll(".trivia__li");
+
+    // Hide all questions
+    for (let i = 0; i < triviaLi.length; i++) {
+      triviaLi[i].classList.add("hide");
+    }
+    Header.scrollIntoView();
+    showResult();
   }
 
   /**
    *
-   * @param {*} respuesta boolean
+   * @param {*} type boolean
    * @returns array respuestas
    */
-  function agregarRespuesta(respuesta) {
-    respuestas.push(respuesta);
+  function addAnswer(type) {
+    respuestas.push(type);
   }
 
   /**
@@ -329,11 +331,7 @@
       const liRespuesta = document.createElement("li");
       liRespuesta.className = "points__li";
 
-      if (respuesta) {
-        liRespuesta.classList.add("succes");
-      } else {
-        liRespuesta.classList.add("error");
-      }
+      liRespuesta.classList.add(respuesta ? "succes" : "error");
 
       const divText = document.createElement("div");
       divText.className = "points__text";
@@ -385,17 +383,13 @@
       }
     }
 
-    if (succesCount > 0) {
-      if (succesCount == 1) {
-        textResult.textContent =
-          "Respondiste correctamente " + succesCount + " pregunta";
-      } else {
-        textResult.textContent =
-          "Respondiste correctamente " + succesCount + " preguntas";
-      }
-    } else {
-      textResult.textContent = "No respondiste correctamente ninguna pregunta";
-    }
+    textResult.textContent =
+      succesCount == 0
+        ? (textResult.textContent =
+            "No respondiste correctamente ninguna pregunta")
+        : succesCount == 1
+        ? "Respondiste correctamente " + succesCount + " pregunta"
+        : "Respondiste correctamente " + succesCount + " preguntas";
   }
 
   /**
