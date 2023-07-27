@@ -44,14 +44,13 @@
   }
   function showSuccess() {
     FormNewsletter.classList.add("form-succes");
-    var containerHeight = document.querySelector(".trivia").offsetHeight;
-    resizeDoc();
+
+    iframeResize();
 
     setTimeout(function () {
       FormNewsletter.classList.remove("form-succes");
 
-      containerHeight = document.querySelector(".trivia").offsetHeight;
-      resizeDoc();
+      iframeResize();
     }, 3000);
   }
   function onTypeEmail() {
@@ -60,20 +59,19 @@
     } else {
       showErrorHint();
     }
-    var containerHeight = document.querySelector(".trivia").offsetHeight;
-    resizeDoc();
+    iframeResize();
   }
 
-  function resizeDoc() {
-    var _scrollHeight = document.body.scrollHeight;
-    window.parent.postMessage(_scrollHeight, window.location);
+  function iframeResize() {
+    var IframeHeight = document.body.scrollHeight;
+    window.parent.postMessage(IframeHeight, window.location);
 
     setTimeout(() => {
       window.requestAnimationFrame(() => {
         var message = {
           sentinel: "amp",
           type: "embed-size",
-          height: _scrollHeight,
+          height: IframeHeight,
         };
         window.parent.postMessage(message, "*");
       });
@@ -82,7 +80,6 @@
 
   /**
    *
-   * @param {*} height se le pasa el height para que ajuste
    * @param {*} delay1 es el delay del primer intervalo de tiempo
    * @param {*} delay2 es el delay del segundo intervalo de tiempo
    * @param {*} delay3 es el delay del tercero intervalo de tiempo, es falso por default
@@ -91,7 +88,6 @@
    * @param {*} ShowElement Elemento a mostrar
    */
   function resizeTrivia({
-    height = null,
     delay1 = "800",
     delay2 = "400",
     delay3 = false,
@@ -102,18 +98,10 @@
     setTimeout(() => {
       if (ShowElement) {
         ShowElement.classList.remove("hide");
-        resizeDoc();
       }
 
       setTimeout(() => {
-        window.requestAnimationFrame(() => {
-          var message = {
-            sentinel: "amp",
-            type: "embed-size",
-            height: height,
-          };
-          window.parent.postMessage(message, "*");
-        });
+        iframeResize();
 
         if (delay3 && elementScroll) {
           setTimeout(() => {
@@ -190,9 +178,7 @@
       Answers[i].classList.add("answer__li--disabled");
     }
 
-    var scrollHeight = document.body.scrollHeight;
     resizeTrivia({
-      height: scrollHeight,
       delay1: "100",
       delay2: "200",
       delay3: "300",
@@ -293,9 +279,7 @@
     const nextLi = parent.nextElementSibling;
 
     if (nextLi) {
-      var scrollHeight = document.body.scrollHeight;
       resizeTrivia({
-        height: scrollHeight,
         delay1: "100",
         delay2: "200",
         delay3: "300",
@@ -374,9 +358,8 @@
         }
       });
     }
-    var scrollHeight = document.body.scrollHeight;
+
     resizeTrivia({
-      height: scrollHeight,
       delay1: "100",
       delay2: "200",
       delay3: "300",
@@ -488,11 +471,11 @@
     });
 
     // Resize de iframe
-    resizeDoc();
+    iframeResize();
   }
 
   window.onload = function () {
-    resizeDoc();
+    iframeResize();
   };
 
   /**
