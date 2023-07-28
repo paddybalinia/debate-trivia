@@ -1,20 +1,20 @@
 (function () {
   "use strict";
 
-  var respuestas = [],
+  let respuestas = [],
     cantPoints = 0,
     FormNewsletter = document.querySelector(".suscribe"),
     FormEmail = FormNewsletter.querySelector(".suscribe__input");
 
   //Constructor
   function Constructor() {
-    var ButtonAnswer = document.querySelectorAll(".answer__li");
-    var ButtonReset = document.querySelector(".button__reset");
+    const ButtonAnswer = document.querySelectorAll(".answer__li");
+    const ButtonReset = document.querySelector(".button__reset");
     for (let i = 0; i < ButtonAnswer.length; i++) {
       ButtonAnswer[i].addEventListener("click", onButtonAnswer, false);
     }
 
-    var ButtonShare = document.querySelectorAll(".share__a");
+    const ButtonShare = document.querySelectorAll(".share__a");
     for (let i = 0; i < ButtonShare.length; i++) {
       ButtonShare[i].addEventListener("click", onButtonShare, false);
     }
@@ -63,12 +63,12 @@
   }
 
   function iframeResize() {
-    var IframeHeight = document.body.scrollHeight;
+    const IframeHeight = document.body.scrollHeight;
     window.parent.postMessage(IframeHeight, window.location);
 
     setTimeout(() => {
       window.requestAnimationFrame(() => {
-        var message = {
+        const message = {
           sentinel: "amp",
           type: "embed-size",
           height: IframeHeight,
@@ -129,7 +129,7 @@
       return;
     }
 
-    var params = {
+    const params = {
       u: "e4231a24b452b97d090ececc9",
       id: "1412f9067f",
       tags: "414022",
@@ -158,15 +158,14 @@
    * @returns
    */
   function onButtonAnswer() {
-    var Parent = this.parentNode;
+    const Parent = this.parentNode;
 
     if (this.classList.contains("answer__li--disabled")) {
       return;
     }
-    var Answers = Parent.querySelectorAll("li[data-points]"),
+    const Answers = Parent.querySelectorAll("li[data-points]"),
       ButtonNext = document.querySelectorAll("button[data-next]"),
       Reveal = Parent.parentNode.querySelector("[data-reveal]"),
-      Alert = Parent.parentNode.querySelector(".alert"),
       Alert = Parent.parentNode.querySelector(".alert"),
       AlertTitle = Alert.querySelector(".alert__title");
 
@@ -186,10 +185,10 @@
       ShowElement: Reveal,
     });
 
-    var highNumber = getHighNumber(Answers);
+    let highNumber = getHighNumber(Answers);
 
     cantPoints = cantPoints + Number(this.dataset.points);
-    var answerType = this.dataset.points == highNumber ? true : false;
+    let answerType = this.dataset.points == highNumber ? true : false;
     addAnswer(answerType);
 
     if (this.dataset.points == highNumber) {
@@ -216,9 +215,9 @@
    * @returns returns the largest number
    */
   function getHighNumber(arrayNumbers) {
-    var higher = null;
+    let higher = null;
     arrayNumbers.forEach((elemento) => {
-      var localNumber = parseInt(elemento.getAttribute("data-points"));
+      const localNumber = parseInt(elemento.getAttribute("data-points"));
       if (higher === null || localNumber > higher) {
         higher = localNumber;
       }
@@ -307,7 +306,7 @@
 
     this.classList.add("showresult");
 
-    var Header = document.querySelector(".header"),
+    const Header = document.querySelector(".header"),
       triviaLi = document.querySelectorAll(".trivia__li");
 
     // Hide all questions
@@ -333,12 +332,12 @@
    * and show de results
    */
   function showResult() {
-    var Results = document.querySelector(".results");
+    const Results = document.querySelector(".results");
     Results.classList.remove("hide");
 
     const ulRespuestas = document.querySelector(".points__ul");
 
-    var indice = 0;
+    let indice = 0;
     for (const respuesta of respuestas) {
       const liRespuesta = document.createElement("li");
       liRespuesta.className = "points__li";
@@ -357,11 +356,11 @@
       ulRespuestas.appendChild(liRespuesta);
       indice++;
 
-      var boxResult = document.querySelectorAll(".points__result");
+      const boxResult = document.querySelectorAll(".points__result");
 
       boxResult.forEach((div) => {
-        var min = parseInt(div.getAttribute("data-min"));
-        var max = parseInt(div.getAttribute("data-max"));
+        const min = parseInt(div.getAttribute("data-min"));
+        const max = parseInt(div.getAttribute("data-max"));
 
         if (cantPoints >= min && cantPoints <= max) {
           div.classList.remove("hide");
@@ -385,11 +384,11 @@
    * Show the text according to the correct answers
    */
   function countSuccess() {
-    var textResult = document.querySelector(".points__texto"),
+    let textResult = document.querySelector(".points__texto"),
       liElements = document.querySelectorAll(".points__li"),
       succesCount = 0;
 
-    for (var liElement of liElements) {
+    for (let liElement of liElements) {
       if (liElement.classList.contains("succes")) {
         succesCount++;
       }
@@ -410,7 +409,7 @@
    * Reset all items of the trivia
    */
   function onButtonReset() {
-    var Header = document.querySelector(".header"),
+    const Header = document.querySelector(".header"),
       Results = document.querySelector(".results"),
       BtnResult = document.querySelector(".showresult"),
       answerElement = document.querySelectorAll(".answer__li"),
@@ -470,8 +469,8 @@
 
     cantPoints = 0;
 
-    // Reset de el texto segun puntos
-    var pointsResult = document.querySelectorAll(".points__result");
+    // Hide text point result
+    const pointsResult = document.querySelectorAll(".points__result");
     pointsResult.forEach((div) => {
       div.classList.add("hide");
     });
