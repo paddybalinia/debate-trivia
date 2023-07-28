@@ -63,6 +63,7 @@
   }
 
   function iframeResize() {
+    const IframeHeight = document.body.scrollHeight;
     const iframeURL =
       window.location !== window.parent.location
         ? document.referrer
