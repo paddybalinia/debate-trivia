@@ -233,41 +233,53 @@
   function onButtonShare(e) {
     e.preventDefault();
 
-    var ShareUrl =
-        window.location != window.parent.location
-          ? document.referrer
-          : document.location.href,
-      ShareText = "¿Te atreves a jugar a esta trivia?",
-      ShareSocial = this.dataset.share;
+    const socialPlatform = this.dataset.share;
+    const url =
+      window.location !== window.parent.location
+        ? document.referrer
+        : document.location.href;
+    const text = "¿Te atreves a jugar a esta trivia?";
 
-    if (ShareSocial == "whatsapp") {
-      window.open("whatsapp://send?text=%20" + ShareText + "%20" + ShareUrl);
+    switch (socialPlatform) {
+      case "whatsapp":
+        openInNewWindow(
+          `whatsapp://send?text=${encodeURIComponent(
+            text
+          )}%20${encodeURIComponent(url)}`
+        );
+        break;
+      case "facebook":
+        openInNewWindow(
+          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+            url
+          )}`
+        );
+        break;
+      case "twitter":
+        openInNewWindow(
+          `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+            text
+          )}&url=${encodeURIComponent(url)}`
+        );
+        break;
+      case "mail":
+        openInNewWindow(
+          `mailto:?subject=¡Participa en la trivia!&body=${encodeURIComponent(
+            `${text} ${url}`
+          )}`
+        );
+        break;
+      default:
+        console.error("Unsupported social platform:", socialPlatform);
     }
-    if (ShareSocial == "facebook") {
-      window.open(
-        "https://www.facebook.com/sharer/sharer.php?u=" + ShareUrl,
-        "_blank",
-        "height=368,width=600,left=100,top=100,menubar=0"
-      );
-    }
-    if (ShareSocial == "twitter") {
-      window.open(
-        "https://twitter.com/intent/tweet?text= " +
-          ShareText +
-          "&url=" +
-          ShareUrl +
-          "_blank",
-        "height=260,width=500,left=100,top=100,menubar=0"
-      );
-    }
-    if (ShareSocial == "mail") {
-      window.open(
-        "mailto:?subject=¡Participa en la trivia!&body=" +
-          ShareText +
-          " %20 " +
-          ShareUrl
-      );
-    }
+  }
+
+  function openInNewWindow(url) {
+    window.open(
+      url,
+      "_blank",
+      "height=368,width=600,left=100,top=100,menubar=0"
+    );
   }
 
   /**
