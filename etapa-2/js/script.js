@@ -63,8 +63,11 @@
   }
 
   function iframeResize() {
-    const IframeHeight = document.body.scrollHeight;
-    window.parent.postMessage(IframeHeight, window.location);
+    const iframeURL =
+      window.location !== window.parent.location
+        ? document.referrer
+        : document.location.href;
+    window.parent.postMessage(IframeHeight, iframeURL);
 
     setTimeout(() => {
       window.requestAnimationFrame(() => {
