@@ -64,12 +64,6 @@
     FormNewsletter.classList.add("form-succes");
 
     iframeResize();
-
-    setTimeout(function () {
-      FormNewsletter.classList.remove("form-succes");
-
-      iframeResize();
-    }, 3000);
   }
   function onTypeEmail() {
     if (isValidEmail(FormEmail.value)) {
@@ -480,6 +474,11 @@
       alertElement[i].classList.remove("alert--error");
       alertElement[i].classList.remove("alert--succes");
     }
+
+    // Reset suscribe
+    const emailInput = document.querySelector(".suscribe__input");
+    emailInput.value = "";
+    FormNewsletter.classList.remove("form-succes");
 
     // Show first question
     triviaLiFirst.classList.remove("hide");
