@@ -24,6 +24,22 @@
     FormNewsletter.addEventListener("submit", onSubmitNewsltter, false);
     FormEmail.addEventListener("keypress", onTypeEmail, false);
     FormEmail.addEventListener("keyup", onTypeEmail, false);
+
+    getLastButton();
+  }
+
+  /**
+   *
+   * Get the las button
+   */
+  function getLastButton() {
+    const buttons = document.querySelectorAll("button[data-next]");
+
+    // Get the last button.
+    const lastButton = buttons[buttons.length - 1];
+
+    // Change the text of the last button.
+    lastButton.querySelector(".button__text").textContent = "Ver resultado";
   }
 
   /**
