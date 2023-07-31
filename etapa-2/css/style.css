@@ -128,10 +128,17 @@ button {
     object-fit: cover;
 }
 
+.header__label {
+    color: #211915;
+    font: 400 13px/1 var(--font-1);
+    margin: 30px 20px 18px;
+    display: block;
+}
+
 .header__title {
     color: #211915;
     font: 700 26px/1 var(--font-1);
-    margin: 25px 20px 18px;
+    margin: 23px 20px 18px;
 }
 
 .header__desc {
@@ -142,15 +149,11 @@ button {
 
 .trivia__top {
     display: flex;
-    justify-content: space-between;
-    margin: 15px 0 0;
+    justify-content: flex-end;
+    margin: 15px 0 -6px;
 }
 
-.trivia__cintillo {
-    color: black;
-    font: bold 16px/1.3 var(--font-3);
-    font-style: italic;
-}
+
 
 .trivia__pagination {
     color: #211915;
@@ -595,10 +598,16 @@ button {
 .suscribe__input {
     background: #F1F1F1;
     border-radius: 125px;
-    border: 0;
+    border: 1px solid #F1F1F1;
     font: 400 14px/20px var(--font-1);
     padding: 7px 20px;
     width: 100%;
+}
+
+.suscribe__advice {
+    color: #c70101;
+    font: 400 14px/22px var(--font-1);
+    margin: 6px 0 0;
 }
 
 .suscribe__hint {
@@ -610,8 +619,12 @@ button {
     border-radius: 10px;
 }
 
-.newsletter-invalid .suscribe__hint {
+.newsletter-invalid .suscribe__advice {
     display: block;
+}
+
+.newsletter-invalid .suscribe__input {
+    border: 1px solid #c70101;
 }
 
 .form-succes .suscribe__fieldset {
