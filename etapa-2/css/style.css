@@ -696,6 +696,7 @@ button {
         line-height: 1.2;
     }
 
+    .header__label,
     .header__title,
     .header__desc {
         margin-left: 50px;
