@@ -603,7 +603,8 @@ button {
 
 .suscribe__hint {
     background: #F1F1F1;
-    font: 400 16px/22px var(--font-3);
+    font: 400 16px/22px var(--font-2);
+    font-style: italic;
     margin: 6px 0 0;
     padding: 21px 17px;
     border-radius: 10px;
