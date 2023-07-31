@@ -558,6 +558,13 @@ button {
 }
 
 /******
+*** RESULTS
+*******/
+.results__container {
+    margin: 0 20px;
+}
+
+/******
 *** SUSCRIBE
 *******/
 .suscribe {
