@@ -54,9 +54,11 @@
   }
   function showErrorHint() {
     FormEmail.parentNode.parentNode.classList.add("newsletter-invalid");
+    iframeResize();
   }
   function hideErrorHint() {
     FormEmail.parentNode.parentNode.classList.remove("newsletter-invalid");
+    iframeResize();
   }
   function showSuccess() {
     FormNewsletter.classList.add("form-succes");
