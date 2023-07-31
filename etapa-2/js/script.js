@@ -476,9 +476,11 @@
     }
 
     // Reset suscribe
+    const formValidator = document.querySelector(".suscribe__validator");
     const emailInput = document.querySelector(".suscribe__input");
     emailInput.value = "";
     FormNewsletter.classList.remove("form-succes");
+    formValidator.classList.remove("newsletter-invalid");
 
     // Show first question
     triviaLiFirst.classList.remove("hide");
