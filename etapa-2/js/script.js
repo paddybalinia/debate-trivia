@@ -54,9 +54,11 @@
   }
   function showErrorHint() {
     FormEmail.parentNode.parentNode.classList.add("newsletter-invalid");
+    iframeResize();
   }
   function hideErrorHint() {
     FormEmail.parentNode.parentNode.classList.remove("newsletter-invalid");
+    iframeResize();
   }
   function showSuccess() {
     FormNewsletter.classList.add("form-succes");
@@ -79,7 +81,7 @@
   }
 
   function iframeResize() {
-    const IframeHeight = document.body.scrollHeight;
+    const IframeHeight = document.body.scrollHeight + 3;
     const iframeURL =
       window.location !== window.parent.location
         ? document.referrer
