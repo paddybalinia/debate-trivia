@@ -211,18 +211,48 @@
       this.classList.add("succes");
       Alert.classList.add("alert--succes");
       AlertTitle.innerHTML = "¡Correcto!";
+
+      updateAnswerResult({
+        element: this,
+      });
       return;
     }
 
     for (let i = 0; i < Answers.length; i++) {
       if (Answers[i].dataset.points == highNumber) {
         Answers[i].classList.add("succes");
+
+        updateAnswerResult({
+          element: Answers[i],
+        });
       }
     }
 
     this.classList.add("error");
     Alert.classList.add("alert--error");
     AlertTitle.innerHTML = "¡Incorrecto!";
+  }
+  /**
+   *
+   * @param {*} element Answer succes
+   * @returns
+   */
+  function updateAnswerResult({ element = null }) {
+    if (!element) {
+      return;
+    }
+    let image = element.querySelector(".answer__img");
+    let src = image.getAttribute("src");
+    let title = element.querySelector(".answer__title").textContent;
+
+    const AnswerResultImg = element.parentNode.parentNode.querySelector(
+      "[data-reveal] .reveal__img"
+    );
+    const AnswerResultText = element.parentNode.parentNode.querySelector(
+      "[data-reveal] .alert__text strong"
+    );
+    AnswerResultText.textContent = title;
+    AnswerResultImg.src = src;
   }
 
   /**
