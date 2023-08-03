@@ -21,14 +21,10 @@ Estas tecnologías nos permitieron crear una trivia que es:
 Espero que disfrutes de la trivia!
 
 Link :
-https://debate-trivia.vercel.app/etapa-2/
+https://debate-trivia.vercel.app/trivia/
 
-
-Prueba embebida en un iframe: 
-https://debate-trivia.vercel.app/etapa-2/iframe.html
+Prueba embebida en un iframe:
+https://debate-trivia.vercel.app/trivia/iframe.html
 
 Version AMP:
-https://debate-trivia.vercel.app/etapa-2/amp-iframe.html
-
-
-
+https://debate-trivia.vercel.app/trivia/amp-iframe.html
