@@ -2,7 +2,7 @@
 
 Esta trivia se incorporará posteriormente en [CMS MEDIOS](https://www.bluestack.la/), permitiendo que los redactores la incrusten en sus artículos. Además, es posible utilizarla tanto en un iframe estándar como en un formato acelerado AMP.
 
-## Stack tecnológico
+### Tecnología utilizada
 
 La creación de esta trivia involucró la aplicación de las siguientes tecnologías:
 
