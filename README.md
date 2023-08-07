@@ -1,18 +1,18 @@
 # Debate Trivia
 
-Esta trivia se integrará luego dentro de cms-medios y los redactores podrán incrustar dentro de las notas. También se puede utilizar en un iframe común o en un AMP.
+Esta trivia se incorporará posteriormente en [CMS MEDIOS](https://www.bluestack.la/), permitiendo que los redactores la incrusten en sus artículos. Además, es posible utilizarla tanto en un iframe estándar como en un formato acelerado AMP.
 
-# Tecnología utilizada
+## Stack tecnológico
 
-Para crear esta trivia, utilize las siguientes tecnologías:
+La creación de esta trivia involucró la aplicación de las siguientes tecnologías:
 
-- Nomenclatura BEM para las clases
-- CSS con display flex y algunas variables de CSS
-- JS vanilla para toda la integracion con la trivia
+- Utilización de la nomenclatura BEM para la definición de clases.
+- Implementación de CSS haciendo uso de la propiedad flex, junto con la incorporación de algunas variables.
+- Integración completa de la trivia mediante JavaScript vanilla.
 
-# Beneficios
+### Beneficios
 
-Estas tecnologías nos permitieron crear una trivia que es:
+Gracias a estas tecnologías, logramos desarrollar una trivia que se caracteriza por ser:
 
 - Fácil de usar
 - Personalizable
@@ -20,11 +20,14 @@ Estas tecnologías nos permitieron crear una trivia que es:
 
 Espero que disfrutes de la trivia!
 
-Link :
+#### Link a la Trivia de ejemplo:
+
 https://debate-trivia.vercel.app/trivia/
 
-Prueba embebida en un iframe:
+##### Link a la trivia embebida en un iframe:
+
 https://debate-trivia.vercel.app/trivia/iframe.html
 
-Version AMP:
+##### Link a la trivia embebida en un AMP iframe Version AMP:
+
 https://debate-trivia.vercel.app/trivia/amp-iframe.html
