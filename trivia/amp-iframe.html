@@ -84,7 +84,7 @@
         html,
         iframe {
             scroll-behavior: smooth;
-            font-family: 'Tahoma', sans-serif;
+            font-family: "Graphik", sans-serif;
         }
 
         .container {
@@ -95,8 +95,37 @@
 
         p {
             color: rgba(0, 0, 0, .9);
-            font: 1.188rem/1.55 'Georgia', serif;
+            font: 1.188rem/1.55 "Mackinac Pro Book", sans-serif;
             margin-bottom: 27px;
+        }
+
+        @font-face {
+            font-family: "Graphik";
+            src: url("fonts/graphik-400.woff2") format("woff2");
+            font-weight: 400;
+            font-display: swap;
+        }
+
+
+        @font-face {
+            font-family: "Graphik";
+            src: url("fonts/graphik-700.woff2") format("woff2");
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Mackinac Pro Book";
+            src: url("fonts/mackinacprobook-400.woff2") format("woff2");
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Mackinac Pro Italic";
+            src: url("fonts/mackinacproitalic-700.woff2") format("woff2");
+            font-weight: 700;
+            font-display: swap;
         }
 
         .resize-trivia {
@@ -113,18 +142,18 @@
 <body>
     <div class="container">
         <h1>Elecciones 23-24: los candidatos</h1>
+
+        <p>Este es un texto simulado para que parezca una nota Este es un texto simulado para que parezca una nota lorem
+            ipsum dolor sit amet, consectetur adipiscing elit. Sed eu mattis nulla. Mauris venenatis tempor magna,
+            semper fringilla tellus blandit ac</p>
+
         <p>Los mexicanos votaban el domingo para elegir al sucesor del presidente Enrique Peña Nieto en unos comicios a
             los
             que el izquierdista Andrés Manuel López Obrador llega como amplio favorito para triunfar tras dos intentos
             fallidos.</p>
-        <p>Los mexicanos votaban el domingo para elegir al sucesor del presidente Enrique Peña Nieto en unos comicios a
-            los
-            que el izquierdista Andrés Manuel López Obrador llega como amplio favorito para triunfar tras dos intentos
-            fallidos.</p>
-        <p>Los mexicanos votaban el domingo para elegir al sucesor del presidente Enrique Peña Nieto en unos comicios a
-            los
-            que el izquierdista Andrés Manuel López Obrador llega como amplio favorito para triunfar tras dos intentos
-            fallidos.</p>
+        <p>Nulla congue neque ut enim placerat, vitae lobortis mi interdum. Donec eget sollicitudin dolor. Curabitur
+            facilisis risus a quam volutpat varius. Morbi facilisis laoreet malesuada.</p>
+
         <amp-iframe class="iframe-container" height="923" sandbox="allow-scripts allow-forms allow-popups"
             frameborder="0" resizable src="https://debate-trivia.vercel.app/trivia/index.html">
             <amp-img layout="fill" src="https://dummyimage.com/400x923/eee/000000.png" placeholder></amp-img>
